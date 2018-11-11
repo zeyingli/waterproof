@@ -20,6 +20,7 @@
         "laravel-admin-ext/config": "^1.0",
         "laravel-admin-ext/file-browser": "^0.0.1",
         "laravel-admin-ext/helpers": "^1.1",
+        "laravel-admin-ext/id-validator": "^1.0",
         "laravel-admin-ext/log-viewer": "^1.0",
         "laravel-admin-ext/phpinfo": "^1.0",
         "laravel-admin-ext/redis-manager": "^1.0",
