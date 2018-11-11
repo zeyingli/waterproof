@@ -351,7 +351,7 @@ return [
             'guard'  => 'api',
             // If you are not using the default user model as the authentication model, set it up
             'user_retriever' => function ($id) {
-                return \App\User::find($id);
+                return \App\Models\User::find($id);
             },
         ]
     ],
