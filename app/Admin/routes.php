@@ -24,7 +24,7 @@ Route::group([
 
     // API Route
     $router->get('/api/get-kiosks', 'KioskController@getKiosks');
-    $router->get('/api/get-availableUmbrella', 'UmbrellaController@getAvailableUmbrella');
+    $router->get('/api/get-availableumbrella', 'UmbrellaController@getAvailableUmbrella');
 
     // Custom Route
     $router->post('/operations/kiosk/status', 'KioskController@status');
