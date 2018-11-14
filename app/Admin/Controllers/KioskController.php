@@ -106,6 +106,7 @@ class KioskController extends Controller
                 ['status', '=', 0],
             ])->count();
             return "<span>{$status}</span>";
+
         });
         // $grid->url('QR Code')->urlWrapper();
 
@@ -158,8 +159,6 @@ class KioskController extends Controller
     {
         $show = new Show(Kiosk::findOrFail($id));
 
-
-
         return $show;
     }
 
@@ -174,7 +173,7 @@ class KioskController extends Controller
 
         $form->display('id', 'ID');
 
-        $form->text('name')->default('000@IST')->help('Kiosk Name')->rules('required|max:10|unique:kiosk');
+        $form->text('name')->default('000@IST')->help('Kiosk Name')->rules('required|max:50|unique:kiosk');
 
         $form->text('location')->help('Kiosk Location')->rules('required|max:50')->attribute(['autocomplete' => 'off', 'placeholder' => 'Kiosk Location']);
 
@@ -183,6 +182,21 @@ class KioskController extends Controller
             'off' => ['value' => 2, 'text' => 'Disable', 'color' => 'warning'],
         ];
         $form->switch('Status')->states($states)->default(1)->rules('required');
+
+        $form->tools(function (Form\Tools $tools) {
+
+            $tools->disableView();
+
+        });
+        
+        $form->footer(function ($footer) {
+
+            $footer->disableReset();
+            $footer->disableViewCheck();
+            $footer->disableEditingCheck();
+            $footer->disableCreatingCheck();
+
+        });
 
         return $form;
     }
