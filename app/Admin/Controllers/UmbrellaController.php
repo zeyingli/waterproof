@@ -10,6 +10,7 @@ use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
+use Illuminate\Http\Request;
 
 class UmbrellaController extends Controller
 {
@@ -168,6 +169,21 @@ class UmbrellaController extends Controller
             4 => 'Unavailable',
         ];
         $form->select('status', 'Status')->options($states)->rules('required');
+
+        $form->tools(function (Form\Tools $tools) {
+
+            $tools->disableView();
+
+        });
+        
+        $form->footer(function ($footer) {
+
+            $footer->disableReset();
+            $footer->disableViewCheck();
+            $footer->disableEditingCheck();
+            $footer->disableCreatingCheck();
+
+        });
 
         return $form;
     }
