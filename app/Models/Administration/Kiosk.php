@@ -2,6 +2,7 @@
 
 namespace App\Models\Administration;
 
+use App\Models\Administration\Record;
 use App\Models\Administration\Umbrella;
 use Illuminate\Database\Eloquent\Model;
 
@@ -27,6 +28,11 @@ class Kiosk extends Model
     public function umbrella()
     {
         return $this->hasMany(Umbrella::class);
+    }
+
+    public function record()
+    {
+        return $this->hasMany(Record::class);
     }
 
     /**

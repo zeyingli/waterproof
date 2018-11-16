@@ -2,6 +2,8 @@
 
 namespace App\Models\Administration;
 
+use App\Models\Administration\Kiosk;
+use App\Models\Administration\Record;
 use Illuminate\Database\Eloquent\Model;
 
 class Umbrella extends Model
@@ -27,6 +29,11 @@ class Umbrella extends Model
     public function kiosk()
     {
         return $this->belongsTo(Kiosk::class, 'kiosk_id');
+    }
+
+    public function record()
+    {
+        return $this->hasMany(Record::class);
     }
 
     public function scopeAvailableUmbrella()
