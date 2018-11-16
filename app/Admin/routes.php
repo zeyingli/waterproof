@@ -23,8 +23,15 @@ Route::group([
     ]);
 
     // API Route
-    $router->get('/api/get-kiosks', 'KioskController@getKiosks');
+    $router->get('/api/get-users', 'ApiController@getUsers');
+    $router->get('/api/get-user', 'ApiController@getUser');
+    $router->get('/api/get-kiosk', 'ApiController@getKioskByName');
+    $router->get('/api/get-umbrellas', 'ApiController@getUmbrellasBySerialNumber');
+    $router->get('/api/get-allavailableumbrellas', 'ApiController@getAllAvailableUmbrellaBySerialNumber');
     $router->get('/api/get-availableumbrella', 'UmbrellaController@getAvailableUmbrella');
+    $router->get('/api/get-vendor', 'ApiController@getVendorByName');
+    $router->get('/api/get-record', 'ApiController@getRecordByName');
+    $router->get('/api/get-recordId', 'ApiController@getRecordById');
 
     // Custom Route
     $router->post('/operations/kiosk/status', 'KioskController@status');
