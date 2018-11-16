@@ -6,11 +6,15 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Admin\\Controllers\\ApiController' => $baseDir . '/app/Admin/Controllers/ApiController.php',
     'App\\Admin\\Controllers\\AuthController' => $baseDir . '/app/Admin/Controllers/AuthController.php',
     'App\\Admin\\Controllers\\ExampleController' => $baseDir . '/app/Admin/Controllers/ExampleController.php',
     'App\\Admin\\Controllers\\HomeController' => $baseDir . '/app/Admin/Controllers/HomeController.php',
     'App\\Admin\\Controllers\\KioskController' => $baseDir . '/app/Admin/Controllers/KioskController.php',
+    'App\\Admin\\Controllers\\RecordController' => $baseDir . '/app/Admin/Controllers/RecordController.php',
+    'App\\Admin\\Controllers\\TransactionController' => $baseDir . '/app/Admin/Controllers/TransactionController.php',
     'App\\Admin\\Controllers\\UmbrellaController' => $baseDir . '/app/Admin/Controllers/UmbrellaController.php',
+    'App\\Admin\\Controllers\\VendorController' => $baseDir . '/app/Admin/Controllers/VendorController.php',
     'App\\Admin\\Extensions\\Column\\ExpandRow' => $baseDir . '/app/Admin/Extensions/Column/ExpandRow.php',
     'App\\Admin\\Extensions\\Column\\FloatBar' => $baseDir . '/app/Admin/Extensions/Column/FloatBar.php',
     'App\\Admin\\Extensions\\Column\\OpenMap' => $baseDir . '/app/Admin/Extensions/Column/OpenMap.php',

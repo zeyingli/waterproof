@@ -517,11 +517,15 @@ class ComposerStaticInitffe6ff98921102f7514df5e8cee4008e
     );
 
     public static $classMap = array (
+        'App\\Admin\\Controllers\\ApiController' => __DIR__ . '/../..' . '/app/Admin/Controllers/ApiController.php',
         'App\\Admin\\Controllers\\AuthController' => __DIR__ . '/../..' . '/app/Admin/Controllers/AuthController.php',
         'App\\Admin\\Controllers\\ExampleController' => __DIR__ . '/../..' . '/app/Admin/Controllers/ExampleController.php',
         'App\\Admin\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Admin/Controllers/HomeController.php',
         'App\\Admin\\Controllers\\KioskController' => __DIR__ . '/../..' . '/app/Admin/Controllers/KioskController.php',
+        'App\\Admin\\Controllers\\RecordController' => __DIR__ . '/../..' . '/app/Admin/Controllers/RecordController.php',
+        'App\\Admin\\Controllers\\TransactionController' => __DIR__ . '/../..' . '/app/Admin/Controllers/TransactionController.php',
         'App\\Admin\\Controllers\\UmbrellaController' => __DIR__ . '/../..' . '/app/Admin/Controllers/UmbrellaController.php',
+        'App\\Admin\\Controllers\\VendorController' => __DIR__ . '/../..' . '/app/Admin/Controllers/VendorController.php',
         'App\\Admin\\Extensions\\Column\\ExpandRow' => __DIR__ . '/../..' . '/app/Admin/Extensions/Column/ExpandRow.php',
         'App\\Admin\\Extensions\\Column\\FloatBar' => __DIR__ . '/../..' . '/app/Admin/Extensions/Column/FloatBar.php',
         'App\\Admin\\Extensions\\Column\\OpenMap' => __DIR__ . '/../..' . '/app/Admin/Extensions/Column/OpenMap.php',
