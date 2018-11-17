@@ -45,7 +45,10 @@ class ApiController extends Controller
     {
         $q = $request->get('q');
 
-        return Kiosk::where('name', 'like', "%$q%")->paginate(null, ['id', 'name as text']);
+        return Kiosk::where([
+        	['name', 'like', "%$q%"],
+        	['status', '=', 1],
+        ])->paginate(null, ['id', 'name as text']);
     }
 
     // Search for Umbrella by Serial Number
