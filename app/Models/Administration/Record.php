@@ -4,6 +4,7 @@ namespace App\Models\Administration;
 
 use App\Models\User;
 use App\Models\Administration\Kiosk;
+use App\Models\Administration\Transaction;
 use App\Models\Administration\Umbrella;
 use Illuminate\Database\Eloquent\Model;
 
@@ -42,6 +43,11 @@ class Record extends Model
     public function umbrella()
     {
         return $this->belongsTo(Umbrella::class);
+    }
+
+    public function transaction()
+    {
+        return $this->hasMany(Transaction::class);
     }
 
 }
