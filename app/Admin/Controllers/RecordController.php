@@ -162,15 +162,40 @@ class RecordController extends Controller
     {
         $show = new Show(Record::findOrFail($id));
 
-        $show->id('Id');
-        $show->users_id('Users id');
-        $show->kiosk_id('Kiosk id');
-        $show->umbrella_id('Umbrella id');
+        $show->id('Record ID');
+        $show->users()->name('Username');
+        $show->kiosk()->name('Kiosk Name');
+        $show->umbrella()->serial_number('Umbrella SN');
+        $show->return_kiosk('Return Station');
+        $show->transaction()->amount('Billable Amount');
         $show->start_time('Start time');
         $show->end_time('End time');
-        $show->status('Status');
+        $show->status('Status')->as(function ($status) {
+            switch ($this->status) {
+                case (0):
+                    return "Pending";
+                break;
+                case (1):
+                    return "Completed";
+                break;
+                case (2):
+                    return "Voided";
+                break;
+                case (3):
+                    return "Overdue";
+                break;
+                default:
+                    return "Unknown";
+                break;
+            }
+        });
         $show->created_at('Created at');
         $show->updated_at('Updated at');
+
+        $show->panel()->tools(function ($tools) {
+            $tools->disableEdit();
+            $tools->disableDelete();
+        });
 
         return $show;
     }
@@ -211,6 +236,15 @@ class RecordController extends Controller
             }
         })->ajax('/administration/api/get-allavailableumbrellas')->rules('required');
 
+        // Retrieve Return Station
+        $form->select('return_kiosk', 'Return Station')->options(function ($name) {
+            $station = Kiosk::find($name);
+
+            if ($station) {
+                return [$station->id => $station->name];
+            }
+        })->ajax('/administration/api/get-kiosk');
+
         $form->datetime('start_time', 'Start time')->default(date('Y-m-d H:i:s'))->rules('required');
         $form->datetime('end_time', 'End time')->default(date('Y-m-d H:i:s'))->rules('required');
         
@@ -232,4 +266,5 @@ class RecordController extends Controller
 
         return $form;
     }
+
 }
