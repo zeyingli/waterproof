@@ -28,7 +28,7 @@ class Umbrella extends Model
      */
     public function kiosk()
     {
-        return $this->belongsTo(Kiosk::class, 'kiosk_id');
+        return $this->belongsTo(Kiosk::class);
     }
 
     public function record()

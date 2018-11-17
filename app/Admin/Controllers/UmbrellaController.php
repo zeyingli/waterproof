@@ -93,7 +93,7 @@ class UmbrellaController extends Controller
         $grid->paginate(30);
 
         $grid->id('ID')->sortable();
-        $grid->kiosk_id('Kiosk ID');
+        $grid->kiosk()->name('Kiosk Name');
         $grid->serial_number('Serial Number');
 
         $grid->status()->display(function () {
@@ -162,7 +162,7 @@ class UmbrellaController extends Controller
             if ($kiosk) {
                 return [$kiosk->name => $kiosk->id];
             }
-        })->ajax('/administration/api/get-kiosks')->rules('required');
+        })->ajax('/administration/api/get-kiosk')->rules('required');
 
         $states = [
             0 => 'Available',
