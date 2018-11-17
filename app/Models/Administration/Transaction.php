@@ -2,9 +2,9 @@
 
 namespace App\Models\Administration;
 
-use App\Models\User;
 use App\Models\Administration\Vendor;
 use App\Models\Administration\Record;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Transaction extends Model
@@ -38,7 +38,7 @@ class Transaction extends Model
 
     public function record()
     {
-        return $this->hasOne(Record::class);
+        return $this->belongsTo(Record::class);
     }
 
 }
