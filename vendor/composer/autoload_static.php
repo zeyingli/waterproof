@@ -132,6 +132,7 @@ class ComposerStaticInitffe6ff98921102f7514df5e8cee4008e
             'Encore\\Admin\\RedisManager\\' => 26,
             'Encore\\Admin\\Media\\' => 19,
             'Encore\\Admin\\LogViewer\\' => 23,
+            'Encore\\Admin\\LockScreen\\' => 24,
             'Encore\\Admin\\IdValidator\\' => 25,
             'Encore\\Admin\\Helpers\\' => 21,
             'Encore\\Admin\\Config\\' => 20,
@@ -406,6 +407,10 @@ class ComposerStaticInitffe6ff98921102f7514df5e8cee4008e
         'Encore\\Admin\\LogViewer\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel-admin-ext/log-viewer/src',
+        ),
+        'Encore\\Admin\\LockScreen\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laravel-admin-ext/lock-screen/src',
         ),
         'Encore\\Admin\\IdValidator\\' => 
         array (
@@ -1170,6 +1175,10 @@ class ComposerStaticInitffe6ff98921102f7514df5e8cee4008e
         'Encore\\Admin\\Layout\\Column' => __DIR__ . '/..' . '/encore/laravel-admin/src/Layout/Column.php',
         'Encore\\Admin\\Layout\\Content' => __DIR__ . '/..' . '/encore/laravel-admin/src/Layout/Content.php',
         'Encore\\Admin\\Layout\\Row' => __DIR__ . '/..' . '/encore/laravel-admin/src/Layout/Row.php',
+        'Encore\\Admin\\LockScreen\\Http\\Controllers\\LockScreenController' => __DIR__ . '/..' . '/laravel-admin-ext/lock-screen/src/Http/Controllers/LockScreenController.php',
+        'Encore\\Admin\\LockScreen\\Http\\Middleware\\LockScreen' => __DIR__ . '/..' . '/laravel-admin-ext/lock-screen/src/Http/Middleware/LockScreen.php',
+        'Encore\\Admin\\LockScreen\\LockScreen' => __DIR__ . '/..' . '/laravel-admin-ext/lock-screen/src/LockScreen.php',
+        'Encore\\Admin\\LockScreen\\LockScreenServiceProvider' => __DIR__ . '/..' . '/laravel-admin-ext/lock-screen/src/LockScreenServiceProvider.php',
         'Encore\\Admin\\LogViewer\\BootExtension' => __DIR__ . '/..' . '/laravel-admin-ext/log-viewer/src/BootExtension.php',
         'Encore\\Admin\\LogViewer\\LogController' => __DIR__ . '/..' . '/laravel-admin-ext/log-viewer/src/LogController.php',
         'Encore\\Admin\\LogViewer\\LogViewer' => __DIR__ . '/..' . '/laravel-admin-ext/log-viewer/src/LogViewer.php',

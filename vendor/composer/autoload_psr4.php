@@ -66,6 +66,7 @@ return array(
     'Encore\\Admin\\RedisManager\\' => array($vendorDir . '/laravel-admin-ext/redis-manager/src'),
     'Encore\\Admin\\Media\\' => array($vendorDir . '/laravel-admin-ext/media-manager/src'),
     'Encore\\Admin\\LogViewer\\' => array($vendorDir . '/laravel-admin-ext/log-viewer/src'),
+    'Encore\\Admin\\LockScreen\\' => array($vendorDir . '/laravel-admin-ext/lock-screen/src'),
     'Encore\\Admin\\IdValidator\\' => array($vendorDir . '/laravel-admin-ext/id-validator/src'),
     'Encore\\Admin\\Helpers\\' => array($vendorDir . '/laravel-admin-ext/helpers/src'),
     'Encore\\Admin\\Config\\' => array($vendorDir . '/laravel-admin-ext/config/src'),
