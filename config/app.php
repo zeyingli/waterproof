@@ -30,6 +30,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Application Version
+    |--------------------------------------------------------------------------
+    |
+    | This value determines the "version number" your application is currently
+    | running in. This may determine how you prefer to configure various
+    | services the application utilizes. Set this in your ".env" file.
+    |
+    */
+
+    'version' => env('APP_VERSION', '1.0'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Debug Mode
     |--------------------------------------------------------------------------
     |
@@ -120,6 +133,19 @@ return [
     'key' => env('APP_KEY'),
 
     'cipher' => 'AES-256-CBC',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Content Delivery Network (CDN)
+    |--------------------------------------------------------------------------
+    |
+    | This value determines the CDN URL your application is currently
+    | using. 
+    |
+    */
+
+    'cdn' => env('APP_CDN', 'https://cdn.zeyingli.com/waterproof/'),
+    'cloudfront' => env('APP_CLOUDFRONT', 'https://cdn.zeyingli.com/'),
 
     /*
     |--------------------------------------------------------------------------
