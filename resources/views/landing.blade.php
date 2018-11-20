@@ -37,7 +37,7 @@
 	<meta name="theme-color" content="#ffffff">
 
     {{-- CSS --}}
-    <link rel='stylesheet' href='{{ config('app.cdn') }}css/style.css?version={{ config('app.version') }}' type='text/css' media='all' />
+    <link href="{{ mix('/css/landing.css') }}" rel="stylesheet" id="theme">
 
     {{-- Optimization --}}
     <link rel="canonical"  href="{{ url()->current() }}" />
@@ -57,13 +57,7 @@
 		Waterproof.token = "{{ csrf_token() }}";
 	</script>
 
-	<script src="{{ config('app.cdn') }}scripts/jquery-3.2.1.min.js?version={{ config('app.version') }}"></script>
-    <script src="{{ config('app.cdn') }}scripts/popper.min.js?version={{ config('app.version') }}"></script>
-    <script src="{{ config('app.cdn') }}scripts/bootstrap.min.js?version={{ config('app.version') }}"></script>
-    <script src="{{ config('app.cdn') }}scripts/swiper.min.js?version={{ config('app.version') }}"></script>
-    <script src="{{ config('app.cdn') }}scripts/main.js?version={{ config('app.version') }}"></script>                    
-    <link rel="stylesheet" id="theme" href="{{ config('app.cdn') }}css/swiper.min.css?version={{ config('app.version') }}">
-    <link rel="stylesheet" id="theme" href="{{ config('app.cdn') }}css/bootstrap.min.css?version={{ config('app.version') }}">
+	<script src="{{ mix('/js/landing.js') }}"></script>
 
 </head>
 
@@ -106,114 +100,40 @@
 				<main id="main" class="site-main" role="main">
 					<article id="post-16" class="post-16 page type-page status-publish hentry">
 						<div class="entry-content">
-							<style>
-							body {
-						        background: rgba(232, 236, 240, 0.25);
-						    }
-						    
-						    .background {
-						        background-color: #2196f3
-						    }
-						    
-						    .background:after {
-						        content: "";
-						        position: absolute;
-						        border-bottom: 200px solid #ffff;
-						        display: block;
-						        width: 100%;
-						        z-index: 1;
-						        bottom: 0;
-						        left: 0;
-						        border-left: 2200px transparent solid;
-						    }
-						    
-						    .background:before {
-						        content: "";
-						        position: absolute;
-						        border-top: 200px solid #ffff;
-						        display: block;
-						        width: 100%;
-						        z-index: 1;
-						        top: 0;
-						        left: 0;
-						        border-right: 2200px transparent solid;
-						    }
-						    
-						    .phonex {
-						        margin: 80px auto;
-						        position: relative;
-						    }
-						    
-						    .phonex > iframe {
-						        overflow-y: auto;
-						        border: 0;
-						        margin: 0 auto;
-						        border: 2px solid #000000;
-						        height: 812px;
-						        width: 375px;
-						        position: absolute;
-						        top: 25px;
-						        left: 0;
-						        right: 0;
-						        border-radius: 37px;
-						        z-index: 1;
-						    }
-						    
-						    .phoneximg {
-						        position: relative;
-						        z-index: 0;
-						        top: 0;
-						        left: 0;
-						        width: auto !important;
-						        right: 0;
-						        margin: 0 auto;
-						    }
-						    
-						    .phonextop {
-						        position: absolute;
-						        left: 0;
-						        right: 0;
-						        margin: 0 auto;
-						        top: 25px;
-						        width: auto;
-						        z-index: 3;
-						    }
-						</style>
-
-						<div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
-							<div class="carousel-inner bg-white">
-								<div class="carousel-item active align-content-center ">
-									<div class="container" style="min-height: 1000px">
-										<div class="row h-100 ">
-											<div class="col-sm-12 col-md-4 col-lg-6 align-self-center text-right">
-												<h3 class="mt-0">Introducing</h3>
-												<h1 class="display-2 mt-0 text-primary">Waterproof</h1>
-												<h2 class="f-light mt-0">Rent. Use. Return.</h2>
-												<h5 class="f-light mt-0 mb-3">Sharing Umbrella in State College</h5>
-												<p class="mt-4">
-													Material Design + iOS Look &#038; Feel <br> Bootstrap Responsive + Vue.js<br> AWS Cloud Computing
-												</p>
-												<br>
-                       							<img src="{{ config('app.cdn') }}images/mobileuxf7-1.png" alt="" width="120" height="auto" class="" style="width:119px" />
-                       							</div>
+							<div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
+								<div class="carousel-inner bg-white">
+									<div class="carousel-item active align-content-center ">
+										<div class="container" style="min-height: 1000px">
+											<div class="row h-100 ">
+												<div class="col-sm-12 col-md-4 col-lg-6 align-self-center text-right">
+													<h3 class="mt-0">Introducing</h3>
+													<h1 class="display-2 mt-0 text-primary">Waterproof</h1>
+													<h2 class="f-light mt-0">Rent. Use. Return.</h2>
+													<h5 class="f-light mt-0 mb-3">Sharing Umbrella in State College</h5>
+													<p class="mt-4">
+														Material Design + iOS Look &#038; Feel <br> Bootstrap + Vue.js + Webpack<br> AWS Cloud Computing
+													</p>
+													<br>
+	                       							<img src="{{ config('app.cdn') }}images/mobileuxf7-1.png" alt="" width="120" height="auto" class="" style="width:119px" />
+	                       						</div>
 
                        							<div class="col">
 							                        <div class="phonex d-flex text-center">
 							                            <img src="{{ config('app.cdn') }}images/iphonerg.png" alt="" class="float-right w-100 phoneximg">
 							                            <img src="{{ config('app.cdn') }}images/iphone-top.png" alt="" class="phonextop" />
-							                            <iframe src="{{ config('app.url') }}/administration"></iframe>
+							                            <iframe src="{{ url('/dashboard') }}"></iframe>
 							                        </div>
 							                    </div>
-							                </div>
-							            </div>
-							        </div>
-							    </div>
+								            </div>
+								        </div>
+								    </div>
+								</div>
 							</div>
 						</div>
-					</article>
-				</main>
-			</div>
+				</article>
+			</main>
 		</div>
+	</div>
 
 </body>
 
