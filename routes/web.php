@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,10 +15,15 @@
 
 Route::get('/', function () {
     return view('landing');
-});
+})->name('Landing Page');
 
+// Authenticated & Verified Route
 Auth::routes(['verify' => true]);
 
-Route::get('/home', function() {
-	return view('home');
-})->middleware('verified')->name('home');
+Route::get('/logout', ['uses' => 'Auth\LoginController@logout'])->name('User Logout');
+
+Route::group(['middleware' => ['auth', 'verified']], function() {
+    
+    Route::get('/dashboard', 'FrontendController@dashboard')->name('User Dashboard');
+});
+
