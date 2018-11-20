@@ -12,6 +12,7 @@ use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
+use Illuminate\Support\Facades\DB;
 
 class RecordController extends Controller
 {
@@ -207,7 +208,7 @@ class RecordController extends Controller
      */
     protected function form()
     {
-        $form = new Form(new Record);
+        $form = new Form(new Record());
 
         // Retrieve User
         $form->select('users_id', 'User Name')->options(function ($name) {
@@ -246,7 +247,7 @@ class RecordController extends Controller
         })->ajax('/administration/api/get-kiosk');
 
         $form->datetime('start_time', 'Start time')->default(date('Y-m-d H:i:s'))->rules('required');
-        $form->datetime('end_time', 'End time')->default(date('Y-m-d H:i:s'))->rules('required');
+        $form->datetime('end_time', 'End time')->default(date('Y-m-d H:i:s'));
         
         $form->select('status', 'Status')->options([
             0 => 'Pending',
@@ -254,6 +255,30 @@ class RecordController extends Controller
             2 => 'Voided',
             3 => 'Overdue',
         ]);
+
+        $form->saving(function ($form) {
+
+            $umbrella = dump($form->umbrella_id);
+            $returnKS = dump($form->return_kiosk);
+            $startTime = dump($form->start_time);
+            $endTime = dump($form->end_time);
+
+            $isReturned = !empty($endTime) && !empty($returnKS);
+            
+            if (!$isReturned) {
+                try {
+                    return $this->lockUmbrella($umbrella);
+                } catch (Exception $e) {
+                    return back()->with(compact($e));
+                }
+            }
+
+            try {
+                return $this->unlockUmbrella($umbrella, $returnKS);
+            } catch (Exception $e) {
+                return back()->with(compact($e));
+            }
+        });
 
         $form->footer(function ($footer) {
 
@@ -265,6 +290,39 @@ class RecordController extends Controller
         });
 
         return $form;
+    }
+
+    protected static function lockUmbrella($id) 
+    {
+        $umbrella = Umbrella::findOrFail($id);
+        $status = $umbrella->status;
+
+        switch ($status) {
+            case (0):
+                return DB::table('umbrella')->where('id', $id)->update(['status' => 1]);
+                break;
+            case (1):
+                throw new Exception('Umbrella already rented, please try again.');
+                break;
+            default:
+                throw new Exception('Umbrella is not available at this time.');
+                break;
+        }
+        
+        return "";
+    }
+
+    protected static function unlockUmbrella($id, $return)
+    {
+        $umbrella = Umbrella::findOrFail($id);
+        $kiosk = Kiosk::findOrFail($return);
+
+        $unlock = DB::table('umbrella')->where('id', $id)->update([
+            ['status', 0],
+            ['kiosk_id', $kiosk->id],
+        ]);
+
+        return $unlock;
     }
 
 }
