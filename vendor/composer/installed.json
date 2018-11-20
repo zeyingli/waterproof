@@ -63,6 +63,68 @@
         ]
     },
     {
+        "name": "cornford/googlmapper",
+        "version": "v2.33.0",
+        "version_normalized": "2.33.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/bradcornford/Googlmapper.git",
+            "reference": "06428532c50d86cc3807c4c6e9fa042f2cd278b8"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/bradcornford/Googlmapper/zipball/06428532c50d86cc3807c4c6e9fa042f2cd278b8",
+            "reference": "06428532c50d86cc3807c4c6e9fa042f2cd278b8",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/support": "5.*",
+            "illuminate/view": "5.*",
+            "php": ">=5.4.0"
+        },
+        "require-dev": {
+            "mockery/mockery": "0.9.1",
+            "phpspec/phpspec": "2.0.*@dev"
+        },
+        "time": "2018-09-06T08:49:31+00:00",
+        "type": "library",
+        "extra": {
+            "laravel": {
+                "providers": [
+                    "Cornford\\Googlmapper\\MapperServiceProvider"
+                ],
+                "aliases": {
+                    "Mapper": "Cornford\\Googlmapper\\Facades\\MapperFacade"
+                }
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Cornford\\Googlmapper": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Bradley Cornford",
+                "email": "me@bradleycornford.co.uk"
+            }
+        ],
+        "description": "An easy way to integrate Google Maps with Laravel.",
+        "keywords": [
+            "google",
+            "laravel",
+            "map",
+            "mapping",
+            "maps",
+            "streetview"
+        ]
+    },
+    {
         "name": "dnoegel/php-xdg-base-dir",
         "version": "0.1",
         "version_normalized": "0.1.0.0",
@@ -1418,17 +1480,17 @@
     },
     {
         "name": "jxlwqq/id-validator",
-        "version": "1.4.18",
-        "version_normalized": "1.4.18.0",
+        "version": "1.4.19",
+        "version_normalized": "1.4.19.0",
         "source": {
             "type": "git",
             "url": "https://github.com/jxlwqq/id-validator.git",
-            "reference": "9fca83504cd5469139d1e497604fa8842fc5ca5d"
+            "reference": "a0d449aff00c8ca0cf6d5be5608477cd630191f9"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/jxlwqq/id-validator/zipball/9fca83504cd5469139d1e497604fa8842fc5ca5d",
-            "reference": "9fca83504cd5469139d1e497604fa8842fc5ca5d",
+            "url": "https://api.github.com/repos/jxlwqq/id-validator/zipball/a0d449aff00c8ca0cf6d5be5608477cd630191f9",
+            "reference": "a0d449aff00c8ca0cf6d5be5608477cd630191f9",
             "shasum": ""
         },
         "require": {
@@ -1437,7 +1499,7 @@
         "require-dev": {
             "phpunit/phpunit": "^5.6"
         },
-        "time": "2018-10-29T06:04:20+00:00",
+        "time": "2018-11-12T03:42:30+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -2011,29 +2073,27 @@
     },
     {
         "name": "laravel-admin-ext/log-viewer",
-        "version": "v1.0.2",
-        "version_normalized": "1.0.2.0",
+        "version": "v1.0.3",
+        "version_normalized": "1.0.3.0",
         "source": {
             "type": "git",
             "url": "https://github.com/laravel-admin-extensions/log-viewer.git",
-            "reference": "19c78d7b81b0f062d4a1a61fb0c0310305b097c2"
+            "reference": "742a2550746c9346d463249ba16b8fba9ac9cf97"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/laravel-admin-extensions/log-viewer/zipball/19c78d7b81b0f062d4a1a61fb0c0310305b097c2",
-            "reference": "19c78d7b81b0f062d4a1a61fb0c0310305b097c2",
+            "url": "https://api.github.com/repos/laravel-admin-extensions/log-viewer/zipball/742a2550746c9346d463249ba16b8fba9ac9cf97",
+            "reference": "742a2550746c9346d463249ba16b8fba9ac9cf97",
             "shasum": ""
         },
         "require": {
-            "encore/laravel-admin": "~1.5",
-            "laravel/framework": "~5.5",
+            "encore/laravel-admin": "~1.6",
             "php": ">=7.0.0"
         },
         "require-dev": {
-            "laravel/laravel": "~5.5",
             "phpunit/phpunit": "~6.0"
         },
-        "time": "2018-04-25T06:14:03+00:00",
+        "time": "2018-11-13T17:17:36+00:00",
         "type": "library",
         "extra": {
             "laravel": {
@@ -2916,17 +2976,17 @@
     },
     {
         "name": "nesbot/carbon",
-        "version": "1.34.0",
-        "version_normalized": "1.34.0.0",
+        "version": "1.35.1",
+        "version_normalized": "1.35.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/briannesbitt/Carbon.git",
-            "reference": "1dbd3cb01c5645f3e7deda7aa46ef780d95fcc33"
+            "reference": "5c05a2be472b22f63291d192410df9f0e0de3b19"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/1dbd3cb01c5645f3e7deda7aa46ef780d95fcc33",
-            "reference": "1dbd3cb01c5645f3e7deda7aa46ef780d95fcc33",
+            "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/5c05a2be472b22f63291d192410df9f0e0de3b19",
+            "reference": "5c05a2be472b22f63291d192410df9f0e0de3b19",
             "shasum": ""
         },
         "require": {
@@ -2934,10 +2994,13 @@
             "symfony/translation": "~2.6 || ~3.0 || ~4.0"
         },
         "require-dev": {
-            "friendsofphp/php-cs-fixer": "~2",
             "phpunit/phpunit": "^4.8.35 || ^5.7"
         },
-        "time": "2018-09-20T19:36:25+00:00",
+        "suggest": {
+            "friendsofphp/php-cs-fixer": "Needed for the `composer phpcs` command. Allow to automatically fix code style.",
+            "phpstan/phpstan": "Needed for the `composer phpstan` command. Allow to detect potential errors."
+        },
+        "time": "2018-11-14T21:55:58+00:00",
         "type": "library",
         "extra": {
             "laravel": {
@@ -3792,17 +3855,17 @@
     },
     {
         "name": "phpunit/phpunit",
-        "version": "7.4.3",
-        "version_normalized": "7.4.3.0",
+        "version": "7.4.4",
+        "version_normalized": "7.4.4.0",
         "source": {
             "type": "git",
             "url": "https://github.com/sebastianbergmann/phpunit.git",
-            "reference": "c151651fb6ed264038d486ea262e243af72e5e64"
+            "reference": "b1be2c8530c4c29c3519a052c9fb6cee55053bbd"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/c151651fb6ed264038d486ea262e243af72e5e64",
-            "reference": "c151651fb6ed264038d486ea262e243af72e5e64",
+            "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/b1be2c8530c4c29c3519a052c9fb6cee55053bbd",
+            "reference": "b1be2c8530c4c29c3519a052c9fb6cee55053bbd",
             "shasum": ""
         },
         "require": {
@@ -3841,7 +3904,7 @@
             "ext-xdebug": "*",
             "phpunit/php-invoker": "^2.0"
         },
-        "time": "2018-10-23T05:57:41+00:00",
+        "time": "2018-11-14T16:52:02+00:00",
         "bin": [
             "phpunit"
         ],

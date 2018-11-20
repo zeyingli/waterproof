@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Cornford\Googlmapper\Facades\MapperFacade as Mapper;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
@@ -23,6 +24,12 @@ class FrontendController extends Controller
      */
     public function dashboard()
     {
+        Mapper::map(53.381128999999990000, -1.470085000000040000);
         return view('frontend.dashboard');
+    }
+
+    public function account()
+    {
+        return view('frontend.account');
     }
 }

@@ -81,7 +81,7 @@
 			<div class="profile-link">
 				<a href="javascript:void(0)" class="media">
                     <div class="w-auto h-100">
-                        <figure class="avatar avatar-40"><i class="material-icons">person</i> </figure>
+                        <figure class="avatar avatar-40"><img src="{{ config('app.cdn') }}images/user.png"> </figure>
                     </div>
                     <div class="media-body">
                         <h5>{{ Auth::user()->name }} <span class="status-online bg-success"></span></h5>
@@ -96,6 +96,20 @@
                         <a href="{{ url('/dashboard') }}" class="sidebar-close">
                             <div class="item-title">
                                 <i class="material-icons">dashboard</i> Dashboard
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('/account') }}" class="sidebar-close">
+                            <div class="item-title">
+                                <i class="material-icons">account_circle</i> My Account
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('/help') }}" class="sidebar-close">
+                            <div class="item-title">
+                                <i class="material-icons">live_help</i> Live Help
                             </div>
                         </a>
                     </li>
@@ -132,9 +146,9 @@
 	{{-- Scripts --}}
 	<script src="{{ mix('/js/webapp.js') }}"></script>
 
-	@if(config('settings.googleMapsAPIStatus'))
-        <script src="https://maps.googleapis.com/maps/api/js?key={{ config('settings.googleMapsAPIKey') }}&libraries=places&dummy=.js"></script>
-    @endif
+	{{-- @if(config('settings.googleMapsAPIStatus'))
+        <script src="https://maps.googleapis.com/maps/api/js?key={{ config('settings.googleMapsAPIKey') }}&libraries=places&dummy=.js" async defer></script>
+    @endif --}}
 
 	@yield('footer_scripts')
 

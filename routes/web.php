@@ -25,5 +25,10 @@ Route::get('/logout', ['uses' => 'Auth\LoginController@logout'])->name('User Log
 Route::group(['middleware' => ['auth', 'verified']], function() {
     
     Route::get('/dashboard', 'FrontendController@dashboard')->name('User Dashboard');
+    
+    Route::get('/account', 'FrontendController@account')->name('My Account');
+    Route::get('/account/recharge', 'FrontendController@recharge')->name('Recharge Account');
+    Route::post('/account/recharge', 'FrontendController@addbalance')->name('Add Balance');
+    Route::get('/account/history', 'FrontendController@history')->name('Payment History');
 });
 
