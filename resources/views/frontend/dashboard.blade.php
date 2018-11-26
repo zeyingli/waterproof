@@ -37,7 +37,7 @@ User Dashboard
                     </div> --}}
                     <div class="row mt-0">
                         <div class="col m-0">
-                            <div style="width: 100wh; height: 100vh;">
+                            <div style="width:100wh;height:100vh;">
                             {!! Mapper::render() !!}
                             </div>
                         </div>
