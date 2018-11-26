@@ -7,7 +7,7 @@
 @section('login')
 	<div class="page">
         <div class="page-content h-100 ">
-            <div class="background color-light"><img src="img/background.png" alt=""></div>
+            <div class="background color-light"></div>
             <div class="row mx-0">
                 <div class="col">
                     <img src="{{ config('app.cdn') }}images/white-logo.png" alt="" class="login-logo">
