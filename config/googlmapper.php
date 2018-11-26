@@ -61,7 +61,7 @@ return [
     | Googlmapper displayed map.
     |
     */
-    'marker' => true,
+    'marker' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -83,7 +83,7 @@ return [
     | location.
     |
     */
-    'locate' => true,
+    'locate' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return [
     | The default zoom level Googlmapper should use.
     |
     */
-    'zoom' => 8,
+    'zoom' => 15,
 
     /*
     |--------------------------------------------------------------------------
@@ -123,7 +123,7 @@ return [
     | Set if map type control should be displayed by Googlmapper.
     |
     */
-    'mapTypeControl' => true,
+    'mapTypeControl' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -143,7 +143,7 @@ return [
     | Set if street view control should be displayed by Googlmapper.
     |
     */
-    'streetViewControl' => true,
+    'streetViewControl' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -163,7 +163,7 @@ return [
     | Set if fullscreen control should be displayed by Googlmapper.
     |
     */
-    'fullscreenControl' => true,
+    'fullscreenControl' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -203,7 +203,7 @@ return [
         | Display a custom icon for markers. (Link to an image)
         |
         */
-        'icon' => '',
+        'icon' => 'https://cdn.mapmarker.io/api/v1/pin?size=50&background=%23009CE0&icon=fa-umbrella&color=%23FFFFFF&voffset=0&hoffset=1&',
 
         /*
         |--------------------------------------------------------------------------
@@ -225,7 +225,7 @@ return [
     | Enable default Googlmapper map marker cluster.
     |
     */
-    'cluster' => true,
+    'cluster' => false,
 
     /*
     |--------------------------------------------------------------------------
