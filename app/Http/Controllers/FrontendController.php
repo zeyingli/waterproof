@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Administration\Kiosk;
+use App\Models\User;
+use Auth;
 use Cornford\Googlmapper\Facades\MapperFacade as Mapper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Validator;
 
 class FrontendController extends Controller
 {
@@ -26,7 +29,6 @@ class FrontendController extends Controller
      */
     public function dashboard()
     {
-        Mapper::map(53.381128999999990000, -1.470085000000040000);
         $kiosks = Kiosk::where('status', 1)->get();
 
         Mapper::map(40.7964652, -77.86278949);
@@ -46,5 +48,33 @@ class FrontendController extends Controller
     public function account()
     {
         return view('frontend.account');
+    }
+
+    public function recharge()
+    {
+        return view('frontend.recharge');
+    }
+
+    public function addBalance(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'amount' => 'required|regex:/^(\d*\.)?\d+$/',
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+
+        $currentUser = User::findOrFail(Auth::id());
+        $currentBalance = $currentUser->balance;
+        $currentUser->balance = $currentBalance + $request->get('amount');
+        $currentUser->save();
+
+        return redirect('/account')->with('success', 'Value has been successfully added into your account.');
+    }
+
+    public function history()
+    {
+        return view('frontend.history');
     }
 }
