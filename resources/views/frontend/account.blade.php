@@ -27,6 +27,14 @@ My Account
                 <div class="col text-center">
                     <h3 class="mt-3 mb-0">$ {{ Auth::user()->balance }}</h3>
                     <p class="mt-0 mb-3 color-gray">Account Balance</p>
+                    @if(session()->has('success'))
+                        <div class="alert alert-success" role="alert">
+                            Value has been successfully added into your account. Your current balance is: $ {{ Auth::user()->balance }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                    @endif
                 </div>
             </div>
             <div class="row mx-0 mt-3">
@@ -40,7 +48,7 @@ My Account
             
             <br>
             
-            <h2 class="block-title color-dark">Most Visited</h2>
+            <h2 class="block-title color-dark">Recent Visited</h2>
             <div class="carosel">
                 <div data-pagination='{"el": ".swiper-pagination"}' data-space-between="0" data-slides-per-view="2" class="swiper-container swiper-init swipermultiple">
                     <div class="swiper-pagination"></div>

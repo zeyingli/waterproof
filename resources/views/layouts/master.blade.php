@@ -75,6 +75,7 @@
 		@else
 
 		@yield('verification')
+        @yield('recharge')
 
 		{{-- Sidebar Menu --}}
 		<div class="sidebar sidebar-left">
