@@ -177,9 +177,12 @@ class KioskController extends Controller
 
         $form->text('location')->help('Kiosk Location')->rules('required|max:50')->attribute(['autocomplete' => 'off', 'placeholder' => 'Kiosk Location']);
 
+        $form->text('lat', 'Latitude')->help('Latitude of Kiosk')->rules('required')->attribute(['autocomplete' => 'off', 'placeholder' => 'Latitude of Kiosk']);
+        $form->text('lng', 'Longitude')->help('Longitude of Kiosk')->rules('required')->attribute(['autocomplete' => 'off', 'placeholder' => 'Longitude of Kiosk']);;
+
         $states = [
             'on' => ['value' => 1, 'text' => 'Enable', 'color' => 'success'],
-            'off' => ['value' => 2, 'text' => 'Disable', 'color' => 'warning'],
+            'off' => ['value' => 2, 'text' => 'Disable', 'color' => 'danger'],
         ];
         $form->switch('Status')->states($states)->default(1)->rules('required');
 
