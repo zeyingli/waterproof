@@ -84,7 +84,7 @@
                 		<div class="collapse navbar-collapse main-navigation" id="site-navigation" role="navigation" aria-label="Primary Menu">
                 			<div class="custom-menu-class">
                 				<ul id="menu-main-menu" class="menu">
-                					<li id="menu-item-7" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-7"><a href="{{ url('/')}}">Mobile Demo</a></li>
+                					<li id="menu-item-7" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-7"><a href="{{ url('/dashboard')}}">Mobile Demo</a></li>
                 					<li id="menu-item-10" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10"><a href="{{ url('/administration')}}">Control Panel</a></li>
 								</ul>
 							</div>
