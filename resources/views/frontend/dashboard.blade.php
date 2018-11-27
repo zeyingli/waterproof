@@ -10,14 +10,25 @@ User Dashboard
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <a class="nav-item nav-link active" id="nav-search-tab" data-toggle="tab" href="#nav-search" role="tab" aria-controls="nav-search" aria-selected="false">
                     <i class="icon material-icons">location_searching</i>
-                    <span class="tabbar-label">Search</span>
+                    <span class="tabbar-label">Find Kiosks</span>
                 </a>
+
+                @if(!$rentalCheck)
+                <a class="nav-item nav-link" id="nav-return-tab" data-toggle="tab" href="#nav-return" role="tab" aria-controls="nav-return" aria-selected="true">
+                    <!-- Different icons for iOS and MD themes -->
+                    <i class="icon material-icons">flight_land</i>
+                    <!-- Label text -->
+                    <span class="tabbar-label">Return Umbrella</span>
+                </a>
+                @else
                 <a class="nav-item nav-link" id="nav-pickup-tab" data-toggle="tab" href="#nav-pickup" role="tab" aria-controls="nav-pickup" aria-selected="true">
                     <!-- Different icons for iOS and MD themes -->
                     <i class="icon material-icons">flight_takeoff</i>
                     <!-- Label text -->
-                    <span class="tabbar-label">Pickup</span>
+                    <span class="tabbar-label">Pickup Umbrella</span>
                 </a>
+                @endif
+
             </div>
         </nav>
 
@@ -45,7 +56,8 @@ User Dashboard
                 </div>
             </div>
             
-            {{-- Rent & Return --}}
+            {{-- Rent --}}
+            @if($rentalCheck)
             <div class="tab-pane fade" id="nav-pickup" role="tabpanel" aria-labelledby="nav-pickup-tab">
                 <div class="content-sticky-footer">
                     <div class="row m-0">
@@ -60,6 +72,23 @@ User Dashboard
                     </div>
                 </div>
             </div>
+            @else
+            {{-- Return --}}
+            <div class="tab-pane fade" id="nav-return" role="tabpanel" aria-labelledby="nav-return-tab">
+                <div class="content-sticky-footer">
+                    <div class="row m-0">
+                        <div class="col mt-3">
+                            <div class="input-group searchshadow">
+                                <input type="text" class="form-control bg-white" placeholder="Find Location 3..." aria-label="">
+                                <div class="input-group-append">
+                                    <button type="button" class="input-group-text "><i class="material-icons">search</i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endif
 
         </div>
     </div>

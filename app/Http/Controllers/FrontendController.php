@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Administration\Kiosk;
+use App\Models\Administration\Transaction;
+use App\Models\Administration\Record;
 use App\Models\User;
 use Auth;
 use Cornford\Googlmapper\Facades\MapperFacade as Mapper;
@@ -29,10 +31,29 @@ class FrontendController extends Controller
      */
     public function dashboard()
     {
+        // Get Current Authenticated User Info
+        $currentUser = Auth::user();
+        
+        // Check if User has Active Record
+        $rentalCheck = true;
+        $activeRecord = Record::where([
+            ['users_id', $currentUser->id],
+            ['status', 0],
+        ])->exists();
+
+        if ($activeRecord) {
+            $rentalCheck = false;
+        }
+
+        //
+
+        // Retrieve Available Kiosk Station(s)
         $kiosks = Kiosk::where('status', 1)->get();
 
+        // Centering Old Main Building
         Mapper::map(40.7964652, -77.86278949);
 
+        // Retrieve Specific Location for Available Kiosk
         foreach ($kiosks as $kiosk) 
         {
             $umbrella = DB::table('umbrella')->join('kiosk', 'umbrella.kiosk_id', '=', 'kiosk.id')->where([
@@ -42,12 +63,18 @@ class FrontendController extends Controller
             Mapper::informationWindow($kiosk->lat, $kiosk->lng, 'Available Umbrella: '. $umbrella, ['open' => false, 'maxWidth' => 200, 'markers' => ['title' => 'Available Kiosk']]);
         }
 
-        return view('frontend.dashboard');
+        $data = [
+            'rentalCheck' => $rentalCheck,
+        ];
+
+        return view('frontend.dashboard')->with($data);
     }
 
     public function account()
     {
-        return view('frontend.account');
+        $currentUser = Auth::user();
+
+        return view('frontend.account', compact($currentUser));
     }
 
     public function recharge()
@@ -75,6 +102,13 @@ class FrontendController extends Controller
 
     public function history()
     {
-        return view('frontend.history');
+        $records = Record::where('users_id', Auth::id())->orderBy('id', 'DESC')->limit(8)->get();
+
+        $data = [
+            'records' => $records,
+        ];
+
+        return view('frontend.history')->with($data);
     }
+
 }
