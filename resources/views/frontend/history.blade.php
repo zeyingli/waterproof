@@ -7,7 +7,7 @@ Payment History
 @section('content')
 	<div class="page-content">
         <div class="content-sticky-footer">
-        	<h3 class="block-title text-center">Payment History</h3>
+        	<h2 class="block-title text-center">Payment History</h2>
         	<div class="row mx-0">
                 <div class="col">
                     <div id="accordion">
@@ -16,7 +16,7 @@ Payment History
                             <div class="card-header bg-primary rounded-0 py-2" id="headingOne">
                                 <a href="javascript:void(0)" class="" data-toggle="collapse" data-target="#collapse{{ $record->id }}" aria-expanded="false" aria-controls="collapse{{ $record->id }}">
                                 	<p class="text-white">
-                                        Order ID: 
+                                        <i class="icon material-icons">receipt</i>Order ID: 
                                         <strong>SC{!! $record->created_at->format('Ymd') !!}-{{ $record->id }}</strong>
 	                                	@if($record->status === 0)
                                             <span class="badge badge-info">In Progress</span>

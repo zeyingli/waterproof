@@ -85,7 +85,9 @@
                         <figure class="avatar avatar-40"><img src="{{ config('app.cdn') }}images/user.png"> </figure>
                     </div>
                     <div class="media-body">
-                        <h5>{{ Auth::user()->name }} <span class="status-online bg-success"></span></h5>
+                        <h5>
+                            {{ Auth::user()->name }} <i class="icon material-icons md-18">verified_user</i>
+                        </h5>
                         <p>Member since {{ Auth::user()->created_at }}</p>
                     </div>
                 </a>
