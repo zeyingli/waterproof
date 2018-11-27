@@ -14,7 +14,7 @@
 
     {{-- SEO Meta --}}
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="{{ config('app.name', 'Waterproof@State College') }} @if (trim($__env->yieldContent('site_title')))@yield('site_title') @endif">
+    <meta name="twitter:title" content="{{ config('app.name', 'Waterproof@StateCollege') }} @if (trim($__env->yieldContent('site_title')))@yield('site_title') @endif">
     <meta name="twitter:description" content="@if (trim($__env->yieldContent('site_description')))@yield('site_description') @endif">
     <meta name="twitter:site" content="@Waterproof">
     <meta name="twitter:image" content="{{ config('app.cdn', 'https://cdn.zeyingli.com/waterproof/') }}" />
