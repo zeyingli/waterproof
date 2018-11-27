@@ -19,7 +19,8 @@ Route::group([
     	'/operations/umbrella' 		=> UmbrellaController::class, 
     	'/operations/record' 		=> RecordController::class,
     	'/operations/transaction' 	=> TransactionController::class,
-    	'/operations/vendor' 		=> VendorController::class, 
+    	'/operations/vendor' 		=> VendorController::class,
+        '/operations/client'        => UserController::class,
     ]);
 
     // API Route
