@@ -18,7 +18,7 @@ User Dashboard
                     <!-- Different icons for iOS and MD themes -->
                     <i class="icon material-icons">flight_land</i>
                     <!-- Label text -->
-                    <span class="tabbar-label">Return Umbrella</span>
+                    <span class="tabbar-label">Dropoff Umbrella</span>
                 </a>
                 @else
                 <a class="nav-item nav-link" id="nav-pickup-tab" data-toggle="tab" href="#nav-pickup" role="tab" aria-controls="nav-pickup" aria-selected="true">
@@ -60,32 +60,64 @@ User Dashboard
             @if($rentalCheck)
             <div class="tab-pane fade" id="nav-pickup" role="tabpanel" aria-labelledby="nav-pickup-tab">
                 <div class="content-sticky-footer">
-                    <div class="row m-0">
-                        <div class="col mt-3">
-                            <div class="input-group searchshadow">
-                                <input type="text" class="form-control bg-white" placeholder="Find Location 2..." aria-label="">
-                                <div class="input-group-append">
-                                    <button type="button" class="input-group-text "><i class="material-icons">search</i></button>
+                    <h2 class="block-title">Nearby Available Kiosk Stations: </h2>
+                    <ul class="list-group">
+                        @foreach($kiosks as $kiosk)
+                        <li class="list-group-item">
+                            <a href="/pickup/{{ $kiosk->id }}/" class="media">
+                                <div class="w-auto h-100">
+                                    <figure class="image-left-wrap smalls mr-3"><img src="{!! $kiosk->img !!}" alt="{{ $kiosk->location }}"></figure>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
+                                <div class="media-body">
+                                    <h5 class="text-primary">{{ $kiosk->name }}</h5>
+                                    <p>{{ $kiosk->location }}</p>
+                                </div>
+                                @if($kiosk->status === 1)
+                                <button class="like-heart color-red">
+                                    <i class="icon material-icons">done</i>
+                                </button>
+                                @else
+                                <button class="like-heart color-red">
+                                    <i class="icon material-icons">report_problem</i>
+                                </button>
+                                @endif
+                            </a>
+                        </li>
+                        @endforeach
+                    </ul>
                 </div>
             </div>
             @else
             {{-- Return --}}
             <div class="tab-pane fade" id="nav-return" role="tabpanel" aria-labelledby="nav-return-tab">
                 <div class="content-sticky-footer">
-                    <div class="row m-0">
-                        <div class="col mt-3">
-                            <div class="input-group searchshadow">
-                                <input type="text" class="form-control bg-white" placeholder="Find Location 3..." aria-label="">
-                                <div class="input-group-append">
-                                    <button type="button" class="input-group-text "><i class="material-icons">search</i></button>
+                    <div class="content-sticky-footer">
+                    <h2 class="block-title">Nearby Available Kiosk Stations: </h2>
+                    <ul class="list-group">
+                        @foreach($kiosks as $kiosk)
+                        <li class="list-group-item">
+                            <a href="/dropoff/{{ $kiosk->id }}/" class="media">
+                                <div class="w-auto h-100">
+                                    <figure class="image-left-wrap smalls mr-3"><img src="{!! $kiosk->img !!}" alt="{{ $kiosk->location }}"></figure>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
+                                <div class="media-body">
+                                    <h5 class="text-primary">{{ $kiosk->name }}</h5>
+                                    <p>{{ $kiosk->location }}</p>
+                                </div>
+                                @if($kiosk->status === 1)
+                                <button class="like-heart color-red">
+                                    <i class="icon material-icons">done</i>
+                                </button>
+                                @else
+                                <button class="like-heart color-red">
+                                    <i class="icon material-icons">report_problem</i>
+                                </button>
+                                @endif
+                            </a>
+                        </li>
+                        @endforeach
+                    </ul>
+                </div>
                 </div>
             </div>
             @endif
@@ -97,5 +129,13 @@ User Dashboard
 @endsection
 
 @section('footer_scripts')
-	
+	{!! Mapper::renderJavascript() !!}
+    <script>
+        $(window).on('load', function() {
+            /* tooltip */
+            $(function() {
+                $('[data-toggle="tooltip"]').tooltip()
+            });
+        });
+    </script>
 @endsection

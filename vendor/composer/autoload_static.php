@@ -543,6 +543,7 @@ class ComposerStaticInitffe6ff98921102f7514df5e8cee4008e
         'App\\Admin\\Controllers\\RecordController' => __DIR__ . '/../..' . '/app/Admin/Controllers/RecordController.php',
         'App\\Admin\\Controllers\\TransactionController' => __DIR__ . '/../..' . '/app/Admin/Controllers/TransactionController.php',
         'App\\Admin\\Controllers\\UmbrellaController' => __DIR__ . '/../..' . '/app/Admin/Controllers/UmbrellaController.php',
+        'App\\Admin\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Admin/Controllers/UserController.php',
         'App\\Admin\\Controllers\\VendorController' => __DIR__ . '/../..' . '/app/Admin/Controllers/VendorController.php',
         'App\\Admin\\Extensions\\Column\\ExpandRow' => __DIR__ . '/../..' . '/app/Admin/Extensions/Column/ExpandRow.php',
         'App\\Admin\\Extensions\\Column\\FloatBar' => __DIR__ . '/../..' . '/app/Admin/Extensions/Column/FloatBar.php',

@@ -14,6 +14,7 @@ return array(
     'App\\Admin\\Controllers\\RecordController' => $baseDir . '/app/Admin/Controllers/RecordController.php',
     'App\\Admin\\Controllers\\TransactionController' => $baseDir . '/app/Admin/Controllers/TransactionController.php',
     'App\\Admin\\Controllers\\UmbrellaController' => $baseDir . '/app/Admin/Controllers/UmbrellaController.php',
+    'App\\Admin\\Controllers\\UserController' => $baseDir . '/app/Admin/Controllers/UserController.php',
     'App\\Admin\\Controllers\\VendorController' => $baseDir . '/app/Admin/Controllers/VendorController.php',
     'App\\Admin\\Extensions\\Column\\ExpandRow' => $baseDir . '/app/Admin/Extensions/Column/ExpandRow.php',
     'App\\Admin\\Extensions\\Column\\FloatBar' => $baseDir . '/app/Admin/Extensions/Column/FloatBar.php',

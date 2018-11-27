@@ -25,6 +25,7 @@ Route::get('/logout', ['uses' => 'Auth\LoginController@logout'])->name('User Log
 Route::group(['middleware' => ['auth', 'verified']], function() {
     
     Route::get('/dashboard', 'FrontendController@dashboard')->name('User Dashboard');
+    Route::get('/pickup/{id}', 'FrontendController@pickup')->name('Pickup Umbrella');
     
     Route::get('/account', 'FrontendController@account')->name('My Account');
     Route::get('/account/recharge', 'FrontendController@recharge')->name('Recharge Account');
