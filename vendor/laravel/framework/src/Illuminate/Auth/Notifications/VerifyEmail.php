@@ -42,7 +42,6 @@ class VerifyEmail extends Notification
 
         return (new MailMessage)
             ->subject(Lang::getFromJson('Verify Email Address'))
-            ->greeting(Lang::getFromJson('Welcome, '.$notifiable->name))
             ->line(Lang::getFromJson('Please click the button below to verify your email address.'))
             ->action(
                 Lang::getFromJson('Verify Email Address'),
