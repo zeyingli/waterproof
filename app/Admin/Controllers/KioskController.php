@@ -177,8 +177,8 @@ class KioskController extends Controller
 
         $form->text('location')->help('Kiosk Location')->rules('required|max:50')->attribute(['autocomplete' => 'off', 'placeholder' => 'Kiosk Location']);
 
-        $form->text('lat', 'Latitude')->help('Latitude of Kiosk')->rules('required')->attribute(['autocomplete' => 'off', 'placeholder' => 'Latitude of Kiosk']);
-        $form->text('lng', 'Longitude')->help('Longitude of Kiosk')->rules('required')->attribute(['autocomplete' => 'off', 'placeholder' => 'Longitude of Kiosk']);
+        $form->text('lat', 'Latitude')->help('Please visit http://www.mapcoordinates.net/en for more details')->rules('required')->attribute(['autocomplete' => 'off', 'placeholder' => 'Latitude of Kiosk']);
+        $form->text('lng', 'Longitude')->help('Please visit http://www.mapcoordinates.net/en for more details')->rules('required')->attribute(['autocomplete' => 'off', 'placeholder' => 'Longitude of Kiosk']);
         $form->url('img', 'Thumbnail')->help('Thumbnail of Kiosk Location')->attribute(['autocomplete' => 'off', 'placeholder' => 'https://cdn.zeyingli.com/waterproof/images/thumbnail/xxx.jpg']);
 
         $states = [
