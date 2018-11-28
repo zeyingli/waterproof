@@ -12,13 +12,13 @@ class Umbrella extends Model
 
     protected $guarded = [
     	'id',
-        'status',
-        'url',
     ];
 
     protected $fillable = [
         'kiosk_id',
+        'status',
         'serial_number',
+        'url',
     ];
 
     /**
