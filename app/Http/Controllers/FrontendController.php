@@ -195,6 +195,15 @@ class FrontendController extends Controller
     // Picking up Umbrella
     public function pickupUmbrella($id)
     {
+        $currentUserId = Auth::id();
+        // Final Check
+        $rentalCheck = $this->rentalAvailabilityCheck($currentUserId);
+        $overdueCheck = $this->overdueRecordCheck($currentUserId);
+
+        if(!$rentalCheck || !$overdueCheck) {
+            return redirect('/account')->with('errors', 'Unable to pickup umbrella due to you are having an active or overdued record on file, please try again later.');
+        }
+
         $kiosk = Kiosk::find($id);
         $umbrellas = Umbrella::where([
             ['kiosk_id', $id],
