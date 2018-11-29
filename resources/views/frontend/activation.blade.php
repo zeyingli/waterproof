@@ -13,10 +13,10 @@ Account Activation - Step 1
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-7">
-                                    <h5 class="card-title text-white">Welcome, {{ Auth::user()->name }}</h5>
+                                    <h5 class="card-title text-white">Welcome, <br>{{ Auth::user()->name }}</h5>
                                 </div>
                                 <div class="col-5 text-right">
-                                    <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Already have account?
+                                    <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="text-white">Already have account?
                         			</a>
     			                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
     			                    	@csrf
