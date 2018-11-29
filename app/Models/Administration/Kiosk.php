@@ -18,6 +18,10 @@ class Kiosk extends Model
     	'name',
     	'location',
     	'status',
+        'lat',
+        'lng',
+        'url',
+        'img',
     ];
 
     /**

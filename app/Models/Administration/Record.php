@@ -19,6 +19,7 @@ class Record extends Model
     protected $fillable = [
     	'users_id',
     	'kiosk_id',
+        'return_kiosk',
         'umbrella_id',        
         'start_time',
         'end_time',
