@@ -14,8 +14,8 @@ class AddUsernamePhoneToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('phone', 20)->after('email');
-            $table->string('username', 50)->after('email');
+            $table->string('phone', 20)->after('email')->nullable();
+            $table->string('username', 50)->after('email')->nullable();
         });
     }
 

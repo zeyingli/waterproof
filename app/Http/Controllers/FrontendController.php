@@ -108,6 +108,46 @@ class FrontendController extends Controller
         return view('frontend.account', compact('currentUser'));
     }
 
+    // Account Activation Page
+    public function activate()
+    {
+        if(!empty(Auth::user()->username) || !empty(Auth::user()->phone))
+        {
+            return redirect('/account')->with('success', 'Your account has been activated, no further action required.');
+        }
+
+        return view('frontend.activation');
+    }
+
+    // Processing Account Activation
+    public function doActivation(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'username' => 'required|max:20|unique:users',
+            'phone'    => 'required|digits:10|unique:users',
+            'terms'    => 'required', 
+            'skipVerification'  => 'nullable',
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+
+        $currentUser = Auth::user();
+        $currentUser->username = $request->username;
+        $currentUser->phone = $request->phone;
+        $currentUser->balance += 10.00;
+
+        if(isset($request->skipVerification))
+        {
+            $currentUser->email_verified_at = now();
+        }
+
+        $currentUser->save();
+
+        return redirect('/account')->with('success', 'Your account has been succesfully activated!');
+    }
+
     // Return Recharge View
     public function recharge()
     {

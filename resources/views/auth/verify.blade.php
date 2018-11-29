@@ -9,11 +9,16 @@
             <div class="background"><img src="img/background.png" alt="Waterproof - Account Verification"></div>
             <header class="row m-0 fixed-header">
                 <div class="left">
-                    <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="material-icons white">keyboard_backspace</i>
-                    </a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    	@csrf
-                	</form>
+                    @if(empty(Auth::user()->username) || empty(Auth::user()->phone))
+                        <a href="{{ url('/account/activate') }}"><i class="material-icons white">keyboard_backspace</i>
+                        </a>
+                    @else
+                        <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="material-icons white">keyboard_backspace</i>
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:none;">
+                            @csrf
+                        </form>
+                    @endif
                 </div>
             </header>
             {{-- Verification --}}

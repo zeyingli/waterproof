@@ -22,6 +22,10 @@ Auth::routes(['verify' => true]);
 
 Route::get('/logout', ['uses' => 'Auth\LoginController@logout'])->name('User Logout');
 
+// Account Activation
+Route::get('/account/activate', 'FrontendController@activate')->name('Account Activation');
+Route::post('/account/activate', 'FrontendController@doActivation')->name('Activating Account');
+
 Route::group(['middleware' => ['auth', 'verified']], function() {
     
     // Menu

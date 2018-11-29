@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('site_title')
-
+Register Account
 @endsection
 
 @section('login')
@@ -43,19 +43,6 @@
                                             </span>
                                         @endif
                                     </div>
-                                    {{-- Username --}}
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="material-icons">perm_identity</i></span>
-                                        </div>
-                                        <input id="username" name="username" type="text" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" placeholder="Username" required>
-
-                                        @if ($errors->has('username'))
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('username') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div>
                                     {{-- Email --}}
                                     <div class="input-group">
                                         <div class="input-group-prepend">
@@ -66,19 +53,6 @@
                                         @if ($errors->has('email'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('email') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div>
-                                    {{-- Phone --}}
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="material-icons">phone</i></span>
-                                        </div>
-                                        <input id="phone" name="phone" type="text" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" placeholder="Phone Number" required>
-
-                                        @if ($errors->has('phone'))
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('phone') }}</strong>
                                             </span>
                                         @endif
                                     </div>

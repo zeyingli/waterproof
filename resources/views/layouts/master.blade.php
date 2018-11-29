@@ -86,7 +86,10 @@
                     </div>
                     <div class="media-body">
                         <h5>
-                            {{ Auth::user()->name }} <i class="icon material-icons md-18">verified_user</i>
+                            {{ Auth::user()->name }}
+                            @if(!empty(Auth::user()->email_verified_at)) 
+                                <i class="icon material-icons md-18">verified_user</i>
+                            @endif
                         </h5>
                         <p>Member since {{ Auth::user()->created_at }}</p>
                     </div>
