@@ -24,11 +24,7 @@ Picking up Umbrella at {{ $kiosk->name }} Kiosk
                             <span class="text-primary">{{ $umbrella }}</span>
                         </h3>
                         <div class="row">
-                            <div class="col w-auto friend-visited pr-0">
-                                <figure class="avatar avatar-40" data-toggle="tooltip" data-placement="top" title="Arnold Arnor"><img src="img/user1.png" alt=""> </figure>
-                                <figure class="avatar avatar-40" data-toggle="tooltip" data-placement="top" title="Hillary Coloniel"><img src="img/user2.png" alt=""> </figure>
-                                <figure class="avatar avatar-40" data-toggle="tooltip" data-placement="top" title="Ven Darwin"><img src="img/user3.png" alt=""> </figure>
-                            </div>
+                            <div class="col w-auto friend-visited pr-0"></div>
 
                             <div class="col pl-0">
                                 <p>Availability of umbrella may not be guaranteed at this location.</p>
@@ -41,8 +37,10 @@ Picking up Umbrella at {{ $kiosk->name }} Kiosk
             
             @if($umbrella === 0)
             	<a href="javascript:void(0)" class="btn btn-block btn-secondary border-0 z-3">Unavailable to Pickup at this Moment</a>
+            @elseif(!$overdueCheck)
+            	<a href="{{ url('/account/recharge') }}" class="btn btn-block btn-danger border-0 z-3">Overdued order found</a>
             @else
-            <form action="{{ url('/pickup/') }}{{ $kiosk->id }}" method="post">
+            <form action="{{ url('/pickup') }}/{{ $kiosk->id }}" method="post">
             	@csrf
             <button type="submit" class="btn btn-block gradient border-0 z-3">Pickup Umbrella</button>
             </form>
