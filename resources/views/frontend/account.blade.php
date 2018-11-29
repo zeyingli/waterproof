@@ -73,7 +73,7 @@ My Account
             
             <br>
             
-            <h2 class="block-title color-dark">Recent Visited</h2>
+            <h2 class="block-title color-dark">Popular Locations</h2>
             <div class="carosel">
                 <div data-pagination='{"el": ".swiper-pagination"}' data-space-between="0" data-slides-per-view="2" class="swiper-container swiper-init swipermultiple">
                     <div class="swiper-pagination"></div>
