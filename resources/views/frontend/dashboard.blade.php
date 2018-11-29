@@ -59,7 +59,37 @@ User Dashboard
                                     <figure class="image-left-wrap smalls mr-3"><img src="{!! $kiosk->img !!}" alt="{{ $kiosk->location }}"></figure>
                                 </div>
                                 <div class="media-body">
-                                    <h5 class="text-primary">{{ $kiosk->name }}</h5>
+                                    <h5 class="text-primary">
+                                        {{ $kiosk->name }}
+                                        @php
+                                            $amount = App\Http\Controllers\FrontendController::countAvailableUmbrella($kiosk->id);
+                                            switch($amount) {
+                                                case($amount < 3):
+                                                    $type = "danger";
+                                                    $info = "Low capacity";
+                                                break;
+                                                case($amount < 5):
+                                                    $type = "warning";
+                                                    $info = "High demand";
+                                                break;
+                                                case($amount < 10):
+                                                    $type = "primary";
+                                                    $info = "Normal";
+                                                break;
+                                                case($amount <= 20):
+                                                    $type = "success";
+                                                    $info = "Sufficient capacity";
+                                                break;
+                                                default:
+                                                    $type = "dark";
+                                                    $info = "Unavailable";
+                                                break;
+                                            }
+                                        @endphp
+                                        <span class="badge badge-{{ $type }} ml-1">
+                                            {{ $info }} - {{ $amount }} left
+                                        </span>
+                                    </h5>
                                     <p>{{ $kiosk->location }}</p>
                                 </div>
                                 @if($kiosk->status === 1)
