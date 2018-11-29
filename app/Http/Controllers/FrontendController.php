@@ -247,7 +247,7 @@ class FrontendController extends Controller
         $record = Record::where([
             ['users_id', Auth::id()],
             ['status', 0],
-        ])->first();
+        ])->firstOrFail();
 
         $record->return_kiosk = $kiosk->name;
         $record->end_time = now();
