@@ -294,7 +294,7 @@ class FrontendController extends Controller
     }
 
     // Count Available Umbrella on Specific Kiosk
-    private static function countAvailableUmbrella($id)
+    public static function countAvailableUmbrella($id)
     {
         $query = DB::table('umbrella')->join('kiosk', 'umbrella.kiosk_id', '=', 'kiosk.id')->where([
                 ['umbrella.kiosk_id', '=', $id],
