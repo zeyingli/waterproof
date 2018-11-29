@@ -244,7 +244,7 @@ class FrontendController extends Controller
 
         $record->save();
 
-        return redirect('/account')->with('success', 'Dropoff successfully! Thank you for choosing Waterproof.');
+        return redirect('/account')->with('success', 'Dropped off umbrella successfully! Thank you for choosing Waterproof.');
     }
 
     // Pay Overdued Order
