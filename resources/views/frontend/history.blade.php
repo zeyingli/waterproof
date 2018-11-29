@@ -39,18 +39,18 @@ Payment History
                                         $transactions = App\Models\Administration\Transaction::where('record_id', $record->id)->get();
                                     @endphp
                                     @foreach($transactions as $transaction)
-                                    Transaction ID:  {!! str_limit(sha1($transaction->created_at), 20, '') !!}-{!! $transaction->id !!}
-                                    <br>
-                                    @php
-                                        $vendors = App\Models\Administration\Vendor::where('id', $transaction->vendor_id)->select('name')->get();
-                                    @endphp
-                                    @foreach($vendors as $vendor)    
-                                    Payment Method: {!! $vendor->name !!}
-                                    @endforeach
-                                    <br>
-                                    Billing Amount:  {!! $transaction->amount !!}
-                                    <br>
-                                    @endforeach
+                                        Transaction ID:  {!! str_limit(sha1($transaction->created_at), 20, '') !!}-{!! $transaction->id !!}
+                                        <br>
+                                        @php
+                                            $vendors = App\Models\Administration\Vendor::where('id', $transaction->vendor_id)->select('name')->get();
+                                        @endphp
+                                        @foreach($vendors as $vendor)    
+                                            Payment Method: {!! $vendor->name !!}
+                                        @endforeach
+                                        <br>
+                                        Billing Amount:  {!! $transaction->amount !!}
+                                        <br>
+                                        @endforeach
                                     <br>
                                     Trip Started:   {{ $record->start_time }} <br>
                                     Trip Ended: 	{!! $record->end_time !!} <br>
@@ -61,7 +61,11 @@ Payment History
                                                 <form action="{{ url('/account/pay') }}/{{ $record->id }}" method="post">
                                                     <input type="hidden" name="amount" id="amount" value="{!! $transaction->amount !!}">
                                                     @csrf
-                                                    <button type="submit" class="btn btn-block btn-outline-primary">Pay Now</button>
+                                                    @if(Auth::user()->balance < $transaction->amount)
+                                                        <a href="{{ url('/account/recharge') }}" class="btn btn-block btn-outline-danger">Insufficient Fund to Pay</a>
+                                                    @else
+                                                        <button type="submit" class="btn btn-block btn-outline-primary">Pay Now</button>
+                                                    @endif
                                                 </form>
                                             </div>
                                         </div>
