@@ -14,7 +14,7 @@ class AddBalanceColumnToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->decimal('balance', 8, 2)->unsigned()->default('0.00')->after('remember_token');
+            $table->decimal('balance', 8, 2)->default('0.00')->after('remember_token');
         });
     }
 
