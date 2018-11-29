@@ -270,7 +270,7 @@ class FrontendController extends Controller
 
         if(Auth::user()->balance < $amount)
         {
-            return back()->with('error', 'Account does not have sufficient fund for paying this order.');
+            return redirect('/account')->with('overdued', 'Account does not have sufficient fund for paying this order.');
         }
 
         $runTransaction = $this->doTransaction($record, $amount);
