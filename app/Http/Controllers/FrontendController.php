@@ -104,8 +104,15 @@ class FrontendController extends Controller
     public function account()
     {
         $currentUser = Auth::user();
+        $overdueCheck = $this->overdueRecordCheck($currentUser->id);
 
         return view('frontend.account', compact('currentUser'));
+        $data = [
+            'currentUser' => $currentUser,
+            'overdueCheck' => $overdueCheck,
+        ];
+
+        return view('frontend.account')->with($data);
     }
 
     // Account Activation Page
