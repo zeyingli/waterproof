@@ -67,9 +67,9 @@ class FrontendController extends Controller
             $umbrella = $this->countAvailableUmbrella($kiosk->id);
 
             if ($rentalCheck) {
-                Mapper::informationWindow($kiosk->lat, $kiosk->lng, 'Available Umbrella: '. $umbrella . '<br><a href="/pickup/'.$kiosk->id.'/">Pickup Umbrella Here</a>', ['open' => false, 'maxWidth' => 200, 'markers' => ['title' => 'Available Kiosk']]);
+                Mapper::informationWindow($kiosk->lat, $kiosk->lng, 'Available Umbrella: '. $umbrella . '<br><a href="/pickup/'.$kiosk->id.'/">Pickup Umbrella Here</a>', ['open' => false, 'maxWidth'=> 200, 'markers' => ['icon' => 'https://cdn.mapmarker.io/api/v1/pin?size=50&background=%23009CE0&icon=fa-umbrella&color=%23FFFFFF&voffset=0&hoffset=1&']]);
             } else {
-                Mapper::informationWindow($kiosk->lat, $kiosk->lng, 'Available Umbrella: '. $umbrella . '<br><a href="/dropoff/'.$kiosk->id.'/">Dropoff Umbrella Here</a>', ['open' => false, 'maxWidth' => 200, 'markers' => ['title' => 'Available Kiosk']]);
+                Mapper::informationWindow($kiosk->lat, $kiosk->lng, 'Available Umbrella: '. $umbrella . '<br><a href="/dropoff/'.$kiosk->id.'/">Dropoff Umbrella Here</a>', ['open' => false, 'maxWidth'=> 200, 'markers' => ['icon' => 'https://cdn.mapmarker.io/api/v1/pin?size=50&background=%23009CE0&icon=fa-arrow-down&color=%23F44E3B&voffset=0&hoffset=1&']]);
             }
         }
 
@@ -106,7 +106,6 @@ class FrontendController extends Controller
         $currentUser = Auth::user();
         $overdueCheck = $this->overdueRecordCheck($currentUser->id);
 
-        return view('frontend.account', compact('currentUser'));
         $data = [
             'currentUser' => $currentUser,
             'overdueCheck' => $overdueCheck,
@@ -212,7 +211,7 @@ class FrontendController extends Controller
         $umbrellaId = array_random($umbrellas);
 
         $newRecord = new Record();
-        $newRecord->users_id = Auth::id();
+        $newRecord->users_id = $currentUserId;
         $newRecord->kiosk_id = $id;
         $newRecord->umbrella_id = $umbrellaId;
         $newRecord->start_time = now();
