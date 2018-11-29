@@ -29,7 +29,8 @@ My Account
                     <p class="mt-0 mb-3 color-gray">Account Balance</p>
                     @if(session()->has('success'))
                         <div class="alert alert-success" role="alert">
-                            Value has been successfully added into your account. Your current balance is: $ {{ Auth::user()->balance }}
+                             {{ session('success') }}
+                             <br> Your current balance is: $ {{ Auth::user()->balance }}
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>
