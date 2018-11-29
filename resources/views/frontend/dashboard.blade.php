@@ -8,20 +8,20 @@ User Dashboard
 	<div class="page-content">
 		<nav class="tabber tabber-bottom">
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                <a class="nav-item nav-link active" id="nav-search-tab" data-toggle="tab" href="#nav-search" role="tab" aria-controls="nav-search" aria-selected="false">
+                <a class="nav-item nav-link{{ $rentalCheck ? ' active' : '' }}" id="nav-search-tab" data-toggle="tab" href="#nav-search" role="tab" aria-controls="nav-search" aria-selected="{{ $rentalCheck ? 'true' : 'false' }}">
                     <i class="icon material-icons">location_searching</i>
                     <span class="tabbar-label">Find Kiosks</span>
                 </a>
 
                 @if(!$rentalCheck)
-                <a class="nav-item nav-link" id="nav-return-tab" data-toggle="tab" href="#nav-return" role="tab" aria-controls="nav-return" aria-selected="true">
+                <a class="nav-item nav-link{{ !$rentalCheck ? ' active' : '' }}" id="nav-return-tab" data-toggle="tab" href="#nav-return" role="tab" aria-controls="nav-return" aria-selected="{{ !$rentalCheck ? 'true' : 'false' }}">
                     <!-- Different icons for iOS and MD themes -->
                     <i class="icon material-icons">flight_land</i>
                     <!-- Label text -->
                     <span class="tabbar-label">Dropoff Umbrella</span>
                 </a>
                 @else
-                <a class="nav-item nav-link" id="nav-pickup-tab" data-toggle="tab" href="#nav-pickup" role="tab" aria-controls="nav-pickup" aria-selected="true">
+                <a class="nav-item nav-link" id="nav-pickup-tab" data-toggle="tab" href="#nav-pickup" role="tab" aria-controls="nav-pickup" aria-selected="false">
                     <!-- Different icons for iOS and MD themes -->
                     <i class="icon material-icons">flight_takeoff</i>
                     <!-- Label text -->
@@ -34,18 +34,8 @@ User Dashboard
 
         <div class="tab-content h-100" id="nav-tabContent">
         	{{-- Search --}}
-        	<div class="tab-pane fade show active" id="nav-search" role="tabpanel" aria-labelledby="nav-search-tab">
+        	<div class="tab-pane fade{{ $rentalCheck ? ' show' : '' }}{{ $rentalCheck ? ' active' : '' }}" id="nav-search" role="tabpanel" aria-labelledby="nav-search-tab">
                 <div class="content-sticky-footer">
-                    {{-- <div class="row m-0">
-                        <div class="col mt-3">
-                            <div class="input-group searchshadow">
-                                <input type="text" class="form-control bg-white" placeholder="Find Location..." aria-label="">
-                                <div class="input-group-append">
-                                    <button type="button" class="input-group-text "><i class="material-icons">search</i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
                     <div class="row mt-0">
                         <div class="col m-0">
                             <div style="width:100wh;height:100vh;">
@@ -89,7 +79,7 @@ User Dashboard
             </div>
             @else
             {{-- Return --}}
-            <div class="tab-pane fade" id="nav-return" role="tabpanel" aria-labelledby="nav-return-tab">
+            <div class="tab-pane fade{{ !$rentalCheck ? ' show' : '' }}{{ !$rentalCheck ? ' active' : '' }}" id="nav-return" role="tabpanel" aria-labelledby="nav-return-tab">
                 <div class="content-sticky-footer">
                     <div class="content-sticky-footer">
                     <h2 class="block-title">Nearby Available Kiosk Stations: </h2>
