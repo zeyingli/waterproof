@@ -114,7 +114,7 @@
 														Material Design + iOS Look &#038; Feel <br> Bootstrap + Vue.js + Webpack<br> AWS Cloud Computing
 													</p>
 													<br>
-	                       							<img src="{{ config('app.cdn') }}images/mobileuxf7-1.png" alt="" width="120" height="auto" class="" style="width:119px" />
+	                       							<img src="{{ config('app.cdn') }}images/qrcode.png" alt="QR Code" width="120" height="auto" class="" style="width:119px" />
 	                       						</div>
 
                        							<div class="col">
