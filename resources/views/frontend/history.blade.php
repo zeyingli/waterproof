@@ -49,6 +49,7 @@ Payment History
                                     @endforeach
                                     <br>
                                     Billing Amount:  {!! $transaction->amount !!}
+                                    <br>
                                     @endforeach
                                     <br>
                                     Trip Started:   {{ $record->start_time }} <br>
@@ -57,7 +58,11 @@ Payment History
                                     @if($record->status === 3)
                                         <div class="row mx-0 mt-1">
                                             <div class="col align-self-end">
-                                                <a href="{{ url('/account/recharge') }}" class="btn btn-block btn-outline-primary">Pay Now</a>
+                                                <form action="{{ url('/account/pay') }}/{{ $record->id }}" method="post">
+                                                    <input type="hidden" name="amount" id="amount" value="{!! $transaction->amount !!}">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-block btn-outline-primary">Pay Now</button>
+                                                </form>
                                             </div>
                                         </div>
                                     @endif
