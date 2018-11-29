@@ -151,7 +151,7 @@ class FrontendController extends Controller
 
         $currentUser->save();
 
-        return redirect('/account')->with('success', 'Your account has been succesfully activated!');
+        return redirect('/account')->with('success', 'Your account has been succesfully activated. We hope you enjoy!');
     }
 
     // Return Recharge View
