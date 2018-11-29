@@ -126,7 +126,9 @@ Account Activation - Step 1
                             </div>
                             <br>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-block mb-1 btn-light text-primary px-4">Save Information</button>
+                                <button type="submit" class="btn btn-block mb-1 btn-light text-primary px-4">
+                                    Get <strong>$10</strong> for Completing Activation
+                                </button>
                             </div>
                         </form>
                         </div>
@@ -140,7 +142,7 @@ Account Activation - Step 1
 
 @section('footer_scripts')
 	<!-- Modal -->
-    <div class="modal fade mt-6" id="termsModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade mt-5" id="termsModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -150,13 +152,28 @@ Account Activation - Step 1
                     </button>
                 </div>
                 <div class="modal-body">
-                    Waterproof
+                    The Waterproof Rental Umbrella Service Level Agreement (this SLA) is a policy governing the use of included products or services (listed below) between customer (“you” or the entity you represent) and Waterproof, and its affiliates (“Waterproof”, “we” or “our”). Waterproof reserves the right to change this SLA without any notifications in advance.
+                    <br>
+                    <br>Included Products and Services
+                    <br>    - Authorized Kiosk Stations
+                    <br>    - Web/Mobile Application
+                    <br>
+                    <br>For more details, please visit <a href="{{ url('/terms') }}" target="_blank">Waterproof Rental Umbrella Terms of Use and Conditions</a>.
+                    <br>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">I agree</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" name="btnAgree" id="btnAgree">I agree</button>
                 </div>
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#btnAgree").click(function() {
+                $("#terms").prop("checked", true);
+            });
+        });
+    </script>
 @endsection
