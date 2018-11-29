@@ -259,7 +259,12 @@ class FrontendController extends Controller
 
         $record->save();
 
-        return redirect('/account')->with('success', 'Dropped off umbrella successfully! Thank you for choosing Waterproof.');
+        if(!$runTransaction)
+        {
+            return redirect('/account')->with('overdued', 'Dropped off umbrella successfully, however your account does not have sufficient fund to pay for this order. Your account has been locked until paid off.');
+        }
+
+        return redirect('/account')->with('success', 'Dropped off umbrella successfully! Thank you for choosing Waterproof, we hope to see you again!');
     }
 
     // Pay Overdued Order
@@ -275,7 +280,7 @@ class FrontendController extends Controller
 
         $runTransaction = $this->doTransaction($record, $amount);
 
-        return redirect('/account')->with('success', 'Overdued order has been succesfully paid.');
+        return redirect('/account')->with('success', 'Overdued order has been succesfully paid off.');
     }
 
     // Rental Availability Check
@@ -346,13 +351,13 @@ class FrontendController extends Controller
 
         if ($currentBalance < $amount) {
             $mark = self::markOverdue($id);
+            return false;
         } else {
+            $chargeBill = self::chargeBalance($currentUser->id, $currentBalance, $amount);
             $mark = self::markComplete($id);
         }
 
-        $chargeBill = self::chargeBalance($currentUser->id, $currentBalance, $amount);
-
-        return $chargeBill;
+        return true;
     }
 
     // Mark Order as Overdue
