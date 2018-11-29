@@ -28,7 +28,7 @@ Dropping off Umbrella at {{ $kiosk->name }} Kiosk
 
                             <div class="col pl-0">
                                 @if($umbrella < 5)
-                                <p class="text-danger">Low volume of umbrella at this location, please return it after used.</p>
+                                <p class="text-danger">Low capacity of umbrella at this location, please return it ASAP after used.</p>
                                 @endif
                             </div>
                         </div>

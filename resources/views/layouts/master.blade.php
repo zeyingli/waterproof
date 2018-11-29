@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html prefix="og: http://ogp.me/ns#" lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="ios">
 <head>
-    <title>{{ config('app.name', 'Waterproof@State College') }} @if (trim($__env->yieldContent('site_title')))@yield('site_title') @endif</title>
+    <title>{{ config('app.name', 'Waterproof@StateCollege') }} @if (trim($__env->yieldContent('site_title')))@yield('site_title') @endif</title>
 
     <meta charset="utf-8">
     {{-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries --}}
