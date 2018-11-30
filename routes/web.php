@@ -20,6 +20,7 @@ Route::get('/', function () {
 // Authenticated & Verified Route
 Auth::routes(['verify' => true]);
 
+// Logout
 Route::get('/logout', ['uses' => 'Auth\LoginController@logout'])->name('User Logout');
 
 // Account Activation
@@ -34,7 +35,7 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
     // Menu
     Route::get('/dashboard', 'FrontendController@dashboard')->name('User Dashboard');
     Route::get('/account', 'FrontendController@account')->name('My Account');
-    Route::get('/help', 'FrontendController@help')->name('Live Help');
+    Route::get('/rewards', 'FrontendController@rewards')->name('Rewards Program');
     Route::get('/help', 'FrontendController@help')->name('Help Center');
 
     // Dashboard Multi-tabs

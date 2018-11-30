@@ -114,6 +114,14 @@
                             </div>
                         </a>
                     </li>
+                    {{-- Reward Program (Planning) --}}
+                    <li class="nav-item">
+                        <a href="{{ url('/rewards') }}" class="sidebar-close">
+                            <div class="item-title">
+                                <i class="material-icons">loyalty</i> Rewards Program
+                            </div>
+                        </a>
+                    </li>
                     {{-- Help Center --}}
                     <li class="nav-item">
                         <a href="{{ url('/help') }}" class="sidebar-close">
