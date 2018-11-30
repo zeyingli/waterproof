@@ -1,62 +1,81 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+@section('site_title')
+Resetting Password
+@endsection
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('password.update') }}">
-                        @csrf
-
-                        <input type="hidden" name="token" value="{{ $token }}">
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $email ?? old('email') }}" required autofocus>
+@section('resetPassword')
+<div class="page">
+	<div class="page-content h-100">
+        <div class="background color-light bg-primary"></div>
+        <div class="row mx-0">
+	        <div class="col">
+	            <img src="{{ config('app.cdn') }}images/white-logo.png" alt="" class="login-logo">
+	            <h1 class="login-title"><small>Keep it</small><br>Safe</h1>
+	        </div>
+	    </div>
+        <div class="row">
+        	<div class="col-12">
+                <div class="card rounded-0 border-0 bg-primary">
+                    <div class="card-header">
+                    </div>
+                    <div class="card-body text-white">
+                    <form action="{{ route('password.update') }}" method="post" class="">
+                    	@csrf
+                    	{{-- Email --}}
+                        <h3 class="f-light mb-3 text-white">Step 2</h3>
+                        <div class="row">
+                            <div class="col-12 w-100">
+                                <label>{{ __('E-Mail Address') }}</label>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <input type="email" id="email" name="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }} text-white" value="{{ $email ?? old('email') }}" required autofocus>
+                                </div>
 
                                 @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
+                                    <div class="invalid-feedback text-white">
                                         <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
+                                    </div>
                                 @endif
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                    	{{-- Password --}}
+                        <h3 class="f-light mb-3 text-white">Step 3</h3>
+                        <div class="row">
+                            <div class="col-12 w-100">
+                                <label>{{ __('Password') }}</label>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <input type="password" id="password" name="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }} text-white" required>
+                                </div>
 
                                 @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
+                                    <div class="invalid-feedback text-white">
                                         <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
+                                    </div>
                                 @endif
                             </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                            <div class="col-12 w-100">
+                                <label>{{ __('Confirm Password') }}</label>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <input type="password" id="password-confirm" name="password-confirm" class="form-control text-white" required>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Reset Password') }}
-                                </button>
-                            </div>
+                        <br>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-block mb-1 btn-light text-primary px-4">
+                                {{ __('Reset Password') }}
+                            </button>
                         </div>
                     </form>
+                    </div>
                 </div>
             </div>
         </div>

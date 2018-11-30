@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('site_title')
-
+Login to My Account
 @endsection
 
 @section('login')

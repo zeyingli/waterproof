@@ -72,6 +72,8 @@
 	<div class="wrapper">
 		@guest
 			@yield('login')
+            @yield('resetEmail')
+            @yield('resetPassword')
 		@else
 
 		@yield('verification')
