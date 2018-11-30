@@ -98,6 +98,7 @@
 
             <nav class="navbar">
                 <ul class="navbar-nav">
+                    {{-- Dashboard --}}
                 	<li class="nav-item">
                         <a href="{{ url('/dashboard') }}" class="sidebar-close">
                             <div class="item-title">
@@ -105,6 +106,7 @@
                             </div>
                         </a>
                     </li>
+                    {{-- Account --}}
                     <li class="nav-item">
                         <a href="{{ url('/account') }}" class="sidebar-close">
                             <div class="item-title">
@@ -112,10 +114,19 @@
                             </div>
                         </a>
                     </li>
+                    {{-- Help Center --}}
                     <li class="nav-item">
                         <a href="{{ url('/help') }}" class="sidebar-close">
                             <div class="item-title">
-                                <i class="material-icons">live_help</i> Live Help
+                                <i class="material-icons">help</i> Help Center
+                            </div>
+                        </a>
+                    </li>
+                    {{-- Legal Information --}}
+                    <li class="nav-item">
+                        <a href="{{ url('/terms') }}" class="sidebar-close">
+                            <div class="item-title">
+                                <i class="material-icons">gavel</i> Legal Information
                             </div>
                         </a>
                     </li>

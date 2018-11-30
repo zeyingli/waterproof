@@ -91,6 +91,21 @@ class FrontendController extends Controller
         return view('frontend.pickup', compact('kiosk', 'umbrella', 'overdueCheck'));
     }
 
+    // On Trip View
+    public function ontrip()
+    {
+        $activeRecord = Record::where([
+            ['users_id', Auth::id()],
+            ['status', 0],
+        ])->first();
+
+        $data = [
+            'record' => $activeRecord,
+        ];
+
+        return view('frontend.ontrip')->with($data);
+    }
+
     // Dropoff Umbrella View
     public function dropoff($id)
     {
@@ -125,6 +140,30 @@ class FrontendController extends Controller
         return view('frontend.activation');
     }
 
+    // Return Recharge View
+    public function recharge()
+    {
+        return view('frontend.recharge');
+    }
+
+    // Retrieve Payment History
+    public function history()
+    {
+        $records = Record::where('users_id', Auth::id())->orderBy('id', 'DESC')->limit(8)->get();
+
+        $data = [
+            'records' => $records,
+        ];
+
+        return view('frontend.history')->with($data);
+    }
+
+    // Terms of Use and Conditions
+    public function terms()
+    {
+        return view('frontend.terms');
+    }
+
     // Processing Account Activation
     public function doActivation(Request $request)
     {
@@ -154,12 +193,6 @@ class FrontendController extends Controller
         return redirect('/account')->with('success', 'Your account has been succesfully activated. We hope you enjoy!');
     }
 
-    // Return Recharge View
-    public function recharge()
-    {
-        return view('frontend.recharge');
-    }
-
     // Add Balance Method
     public function addBalance(Request $request)
     {
@@ -177,18 +210,6 @@ class FrontendController extends Controller
         $currentUser->save();
 
         return redirect('/account')->with('success', 'Value has been successfully added into your account.');
-    }
-
-    // Retrieve Payment History
-    public function history()
-    {
-        $records = Record::where('users_id', Auth::id())->orderBy('id', 'DESC')->limit(8)->get();
-
-        $data = [
-            'records' => $records,
-        ];
-
-        return view('frontend.history')->with($data);
     }
 
     // Picking up Umbrella
@@ -221,21 +242,6 @@ class FrontendController extends Controller
         $lockUmbrella = $this->lockUmbrella($umbrellaId);
 
         return redirect('/ontrip')->with('success', 'Picked up Umbrella Successfully.');
-    }
-
-    // On Trip View
-    public function ontrip()
-    {
-        $activeRecord = Record::where([
-            ['users_id', Auth::id()],
-            ['status', 0],
-        ])->first();
-
-        $data = [
-            'record' => $activeRecord,
-        ];
-
-        return view('frontend.ontrip')->with($data);
     }
 
     // Dropping off Umbrella
