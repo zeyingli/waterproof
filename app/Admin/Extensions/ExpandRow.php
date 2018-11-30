@@ -13,7 +13,7 @@ class ExpandRow extends AbstractDisplayer
 
         $html = call_user_func($callback);
 
-        $script = <<<EOT
+        $script = <<<'EOT'
 
 $('.grid-expand').on('click', function () {
     if ($(this).data('inserted') == '0') {

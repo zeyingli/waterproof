@@ -6,7 +6,6 @@ use App\Models\Administration\Kiosk;
 use App\Models\Administration\Record;
 use App\Models\Administration\Transaction;
 use App\Models\Administration\Umbrella;
-use App\Models\Administration\Vendor;
 use App\Models\User;
 use Auth;
 use Carbon\Carbon;
@@ -17,7 +16,6 @@ use Validator;
 
 class FrontendController extends Controller
 {
-
     // Environment Variables
     private static $billBySecond = 0.001;
     private static $defaultPaymentCode = 1;
@@ -51,7 +49,7 @@ class FrontendController extends Controller
     {
         // Get Current Authenticated User Info
         $currentUser = Auth::user();
-        
+
         // Check if User has Active or Overdued Record
         $rentalCheck = $this->rentalAvailabilityCheck($currentUser->id);
 
@@ -62,20 +60,19 @@ class FrontendController extends Controller
         Mapper::map(40.7964652, -77.86278949);
 
         // Retrieve Specific Location for Available Kiosk
-        foreach ($kiosks as $kiosk) 
-        {
+        foreach ($kiosks as $kiosk) {
             $umbrella = $this->countAvailableUmbrella($kiosk->id);
 
             if ($rentalCheck) {
-                Mapper::informationWindow($kiosk->lat, $kiosk->lng, 'Available Umbrella: '. $umbrella . '<br><a href="/pickup/'.$kiosk->id.'/">Pickup Umbrella Here</a>', ['open' => false, 'maxWidth'=> 200, 'markers' => ['icon' => 'https://cdn.mapmarker.io/api/v1/pin?size=50&background=%23009CE0&icon=fa-umbrella&color=%23FFFFFF&voffset=0&hoffset=1&']]);
+                Mapper::informationWindow($kiosk->lat, $kiosk->lng, 'Available Umbrella: '.$umbrella.'<br><a href="/pickup/'.$kiosk->id.'/">Pickup Umbrella Here</a>', ['open' => false, 'maxWidth'=> 200, 'markers' => ['icon' => 'https://cdn.mapmarker.io/api/v1/pin?size=50&background=%23009CE0&icon=fa-umbrella&color=%23FFFFFF&voffset=0&hoffset=1&']]);
             } else {
-                Mapper::informationWindow($kiosk->lat, $kiosk->lng, 'Available Umbrella: '. $umbrella . '<br><a href="/dropoff/'.$kiosk->id.'/">Dropoff Umbrella Here</a>', ['open' => false, 'maxWidth'=> 200, 'markers' => ['icon' => 'https://cdn.mapmarker.io/api/v1/pin?size=50&background=%23009CE0&icon=fa-arrow-down&color=%23F44E3B&voffset=0&hoffset=1&']]);
+                Mapper::informationWindow($kiosk->lat, $kiosk->lng, 'Available Umbrella: '.$umbrella.'<br><a href="/dropoff/'.$kiosk->id.'/">Dropoff Umbrella Here</a>', ['open' => false, 'maxWidth'=> 200, 'markers' => ['icon' => 'https://cdn.mapmarker.io/api/v1/pin?size=50&background=%23009CE0&icon=fa-arrow-down&color=%23F44E3B&voffset=0&hoffset=1&']]);
             }
         }
 
         $data = [
             'rentalCheck' => $rentalCheck,
-            'kiosks'      => $kiosks, 
+            'kiosks'      => $kiosks,
         ];
 
         return view('frontend.dashboard')->with($data);
@@ -122,7 +119,7 @@ class FrontendController extends Controller
         $overdueCheck = $this->overdueRecordCheck($currentUser->id);
 
         $data = [
-            'currentUser' => $currentUser,
+            'currentUser'  => $currentUser,
             'overdueCheck' => $overdueCheck,
         ];
 
@@ -132,8 +129,7 @@ class FrontendController extends Controller
     // Account Activation Page
     public function activate()
     {
-        if(!empty(Auth::user()->username) || !empty(Auth::user()->phone))
-        {
+        if (!empty(Auth::user()->username) || !empty(Auth::user()->phone)) {
             return redirect('/account')->with('success', 'Your account has been activated, no further action required.');
         }
 
@@ -179,9 +175,9 @@ class FrontendController extends Controller
     public function doActivation(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'username' => 'required|max:20|unique:users',
-            'phone'    => 'required|digits:10|unique:users',
-            'terms'    => 'required', 
+            'username'          => 'required|max:20|unique:users',
+            'phone'             => 'required|digits:10|unique:users',
+            'terms'             => 'required',
             'skipVerification'  => 'nullable',
         ]);
 
@@ -194,8 +190,7 @@ class FrontendController extends Controller
         $currentUser->phone = $request->phone;
         $currentUser->balance += 10.00;
 
-        if(isset($request->skipVerification))
-        {
+        if (isset($request->skipVerification)) {
             $currentUser->email_verified_at = now();
         }
 
@@ -231,7 +226,7 @@ class FrontendController extends Controller
         $rentalCheck = $this->rentalAvailabilityCheck($currentUserId);
         $overdueCheck = $this->overdueRecordCheck($currentUserId);
 
-        if(!$rentalCheck || !$overdueCheck) {
+        if (!$rentalCheck || !$overdueCheck) {
             return redirect('/account')->with('errors', 'Unable to pickup umbrella due to you are having an active or overdued record on file, please try again later.');
         }
 
@@ -270,14 +265,13 @@ class FrontendController extends Controller
         $startTime = $record->start_time;
         $endTime = now();
 
-        $calcBill   = $this->doCalcBill($startTime, $endTime);
+        $calcBill = $this->doCalcBill($startTime, $endTime);
         $runTransaction = $this->doTransaction($record->id, $calcBill);
         $unlockUmbrella = $this->unlockUmbrella($record->umbrella_id, $id);
 
         $record->save();
 
-        if(!$runTransaction)
-        {
+        if (!$runTransaction) {
             return redirect('/account')->with('overdued', 'Dropped off umbrella successfully, however your account does not have sufficient fund to pay for this order. Your account has been locked until paid off.');
         }
 
@@ -290,8 +284,7 @@ class FrontendController extends Controller
         $record = $request->id;
         $amount = $request->amount;
 
-        if(Auth::user()->balance < $amount)
-        {
+        if (Auth::user()->balance < $amount) {
             return redirect('/account')->with('overdued', 'Account does not have sufficient fund for paying this order.');
         }
 
@@ -308,7 +301,7 @@ class FrontendController extends Controller
             ['status', 0],
         ])->exists();
 
-        if($activeRecord) {
+        if ($activeRecord) {
             return false;
         }
 
@@ -323,7 +316,7 @@ class FrontendController extends Controller
             ['status', 3],
         ])->exists();
 
-        if($overdueRecord) {
+        if ($overdueRecord) {
             return false;
         }
 
@@ -348,7 +341,7 @@ class FrontendController extends Controller
         $endTime = Carbon::parse($t2);
         $duration = $endTime->diffInSeconds($startTime);
 
-        $totalAmount = $duration * self::$billBySecond;;
+        $totalAmount = $duration * self::$billBySecond;
 
         return $totalAmount;
     }
@@ -363,11 +356,12 @@ class FrontendController extends Controller
         $newTransaction->vendor_id = self::$defaultPaymentCode;
         $newTransaction->record_id = $id;
         $newTransaction->amount = $amount;
-        
+
         $newTransaction->save();
 
         if ($currentBalance < $amount) {
             $mark = self::markOverdue($id);
+
             return false;
         } else {
             $chargeBill = self::chargeBalance($currentUser->id, $currentBalance, $amount);
@@ -426,5 +420,4 @@ class FrontendController extends Controller
 
         return $unlock;
     }
-
 }

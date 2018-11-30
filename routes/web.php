@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,8 +29,8 @@ Route::post('/account/activate', 'FrontendController@doActivation')->name('Activ
 // Legal Information
 Route::get('/terms', 'FrontendController@terms')->name('Terms of Use and Conditions');
 
-Route::group(['middleware' => ['auth', 'verified']], function() {
-    
+Route::group(['middleware' => ['auth', 'verified']], function () {
+
     // Menu
     Route::get('/dashboard', 'FrontendController@dashboard')->name('User Dashboard');
     Route::get('/account', 'FrontendController@account')->name('My Account');
@@ -44,11 +43,10 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
     Route::get('/dropoff/{id}', 'FrontendController@dropoff')->name('Dropoff Umbrella');
     Route::post('/dropoff/{id}', 'FrontendController@dropoffUmbrella')->name('Droping off Umbrella');
     Route::get('/ontrip', 'FrontendController@ontrip')->name('On Trip');
-    
+
     // User Account
     Route::get('/account/recharge', 'FrontendController@recharge')->name('Recharge Account');
     Route::post('/account/recharge', 'FrontendController@addbalance')->name('Add Balance');
     Route::get('/account/history', 'FrontendController@history')->name('Payment History');
     Route::post('/account/pay/{id}', 'FrontendController@payOverduedOrder')->name('Pay Overdue Order');
 });
-

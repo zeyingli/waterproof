@@ -8,7 +8,7 @@ class ButtonGroup extends AbstractTool
 {
     public function render()
     {
-        return <<<EOT
+        return <<<'EOT'
 
 <div class="btn-group" data-toggle="buttons">
     <label class="btn btn-default btn-sm active">
@@ -23,6 +23,5 @@ class ButtonGroup extends AbstractTool
 </div>
 
 EOT;
-
     }
 }

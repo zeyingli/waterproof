@@ -9,7 +9,7 @@ class Qrcode extends AbstractDisplayer
 {
     protected function script()
     {
-        return <<<EOT
+        return <<<'EOT'
 
 $('.grid-action-qrcode').popover({
     title: "Scan code to visit",
@@ -18,7 +18,6 @@ $('.grid-action-qrcode').popover({
 });
 
 EOT;
-
     }
 
     public function display()

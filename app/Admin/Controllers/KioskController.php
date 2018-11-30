@@ -3,15 +3,14 @@
 namespace App\Admin\Controllers;
 
 use App\Admin\Extensions\Tools\StatusChange;
+use App\Http\Controllers\Controller;
 use App\Models\Administration\Kiosk;
 use App\Models\Administration\Umbrella;
-use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
-use Encore\Admin\Widgets\Table;
 use Illuminate\Http\Request;
 
 class KioskController extends Controller
@@ -23,11 +22,11 @@ class KioskController extends Controller
      */
     protected $title = 'Kiosk Management';
 
-
     /**
      * Index interface.
      *
      * @param Content $content
+     *
      * @return Content
      */
     public function index(Content $content)
@@ -41,30 +40,32 @@ class KioskController extends Controller
     /**
      * Show interface.
      *
-     * @param mixed $id
+     * @param mixed   $id
      * @param Content $content
+     *
      * @return Content
      */
     public function show($id, Content $content)
     {
         return $content
             ->header($this->title)
-            ->description('Showing Kiosk Details: '. $id)
+            ->description('Showing Kiosk Details: '.$id)
             ->body($this->detail($id));
     }
 
     /**
      * Edit interface.
      *
-     * @param mixed $id
+     * @param mixed   $id
      * @param Content $content
+     *
      * @return Content
      */
     public function edit($id, Content $content)
     {
         return $content
             ->header($this->title)
-            ->description('Editing Kiosk Info: '. $id)
+            ->description('Editing Kiosk Info: '.$id)
             ->body($this->form()->edit($id));
     }
 
@@ -72,6 +73,7 @@ class KioskController extends Controller
      * Create interface.
      *
      * @param Content $content
+     *
      * @return Content
      */
     public function create(Content $content)
@@ -105,8 +107,8 @@ class KioskController extends Controller
                 ['kiosk_id', '=', $this->id],
                 ['status', '=', 0],
             ])->count();
-            return "<span>{$status}</span>";
 
+            return "<span>{$status}</span>";
         });
         // $grid->url('QR Code')->urlWrapper();
 
@@ -118,13 +120,13 @@ class KioskController extends Controller
         // $grid->status()->switch($states);
         $grid->status()->display(function () {
             switch ($this->status) {
-                case (0):
+                case 0:
                     return "<span class='label label-danger'>Disconnected</span>";
                     break;
-                case (1):
+                case 1:
                     return "<span class='label label-success'>Connected</span>";
                     break;
-                case (2):
+                case 2:
                     return "<span class='label label-warning'>Disabled</span>";
                     break;
                 default:
@@ -153,6 +155,7 @@ class KioskController extends Controller
      * Make a show builder.
      *
      * @param mixed $id
+     *
      * @return Show
      */
     protected function detail($id)
@@ -169,7 +172,7 @@ class KioskController extends Controller
      */
     protected function form()
     {
-        $form = new Form(new Kiosk);
+        $form = new Form(new Kiosk());
 
         $form->display('id', 'ID');
 
@@ -182,24 +185,20 @@ class KioskController extends Controller
         $form->url('img', 'Thumbnail')->help('Thumbnail of Kiosk Location')->attribute(['autocomplete' => 'off', 'placeholder' => 'https://cdn.zeyingli.com/waterproof/images/thumbnail/xxx.jpg']);
 
         $states = [
-            'on' => ['value' => 1, 'text' => 'Enable', 'color' => 'success'],
+            'on'  => ['value' => 1, 'text' => 'Enable', 'color' => 'success'],
             'off' => ['value' => 2, 'text' => 'Disable', 'color' => 'danger'],
         ];
         $form->switch('Status')->states($states)->default(1)->rules('required');
 
         $form->tools(function (Form\Tools $tools) {
-
             $tools->disableView();
-
         });
-        
-        $form->footer(function ($footer) {
 
+        $form->footer(function ($footer) {
             $footer->disableReset();
             $footer->disableViewCheck();
             $footer->disableEditingCheck();
             $footer->disableCreatingCheck();
-
         });
 
         return $form;
@@ -213,7 +212,7 @@ class KioskController extends Controller
         }
     }
 
-    public function getKiosks(Request $request) 
+    public function getKiosks(Request $request)
     {
         $q = $request->get('q');
 

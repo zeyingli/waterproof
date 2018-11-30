@@ -12,7 +12,7 @@ class ReleasePost extends BatchAction
     {
         $this->action = $action;
     }
-    
+
     public function script()
     {
         return <<<EOT
@@ -35,6 +35,5 @@ $('{$this->getElementClass()}').on('click', function() {
 });
 
 EOT;
-
     }
 }

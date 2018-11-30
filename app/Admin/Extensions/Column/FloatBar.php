@@ -9,7 +9,7 @@ class FloatBar extends AbstractDisplayer
 {
     protected function script()
     {
-        return <<<EOT
+        return <<<'EOT'
 
 $('.grid-float-bar').closest('tr').mouseover(function () {
     $(this).find('.grid-float-bar').removeClass('hide');
@@ -20,14 +20,13 @@ $('.grid-float-bar').closest('tr').mouseout(function () {
 });
 
 EOT;
-
     }
 
     public function display()
     {
         Admin::script($this->script());
 
-        return <<<EOT
+        return <<<'EOT'
 <div style="width:220px;">
     <div class="hide grid-float-bar">
         <a class="btn btn-xs btn-default"><i class="fa fa-thumbs-up"></i> Up</a>

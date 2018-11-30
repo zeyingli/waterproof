@@ -17,6 +17,5 @@ $('{$this->getElementClass()}').on('click', function() {
 });
 
 EOT;
-
     }
 }

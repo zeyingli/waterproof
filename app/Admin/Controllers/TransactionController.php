@@ -2,11 +2,11 @@
 
 namespace App\Admin\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Models\Administration\Record;
 use App\Models\Administration\Transaction;
 use App\Models\Administration\Vendor;
 use App\Models\User;
-use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -27,6 +27,7 @@ class TransactionController extends Controller
      * Index interface.
      *
      * @param Content $content
+     *
      * @return Content
      */
     public function index(Content $content)
@@ -40,8 +41,9 @@ class TransactionController extends Controller
     /**
      * Show interface.
      *
-     * @param mixed $id
+     * @param mixed   $id
      * @param Content $content
+     *
      * @return Content
      */
     public function show($id, Content $content)
@@ -55,8 +57,9 @@ class TransactionController extends Controller
     /**
      * Edit interface.
      *
-     * @param mixed $id
+     * @param mixed   $id
      * @param Content $content
+     *
      * @return Content
      */
     public function edit($id, Content $content)
@@ -71,6 +74,7 @@ class TransactionController extends Controller
      * Create interface.
      *
      * @param Content $content
+     *
      * @return Content
      */
     public function create(Content $content)
@@ -102,12 +106,10 @@ class TransactionController extends Controller
         $grid->created_at('Created at')->sortable();
 
         $grid->filter(function (Grid\Filter $filter) {
-
             $filter->disableIdFilter();
 
             $filter->equal('record_id', 'Record ID')->select();
             $filter->equal('vendor_id', 'Vendor Name')->select()->ajax('/administration/api/get-vendor');
-
         });
 
         $grid->actions(function ($actions) {
@@ -122,6 +124,7 @@ class TransactionController extends Controller
      * Make a show builder.
      *
      * @param mixed $id
+     *
      * @return Show
      */
     protected function detail($id)
@@ -133,7 +136,7 @@ class TransactionController extends Controller
         $show->vendor()->name('Vendor Name');
         $show->amount('Amount');
         $show->created_at('Created at');
-        
+
         return $show;
     }
 
@@ -167,27 +170,23 @@ class TransactionController extends Controller
         })->ajax('/administration/api/get-vendor')->rules('required');
 
         $form->footer(function ($footer) {
-
             $footer->disableReset();
             $footer->disableViewCheck();
             $footer->disableEditingCheck();
             $footer->disableCreatingCheck();
-
         });
 
         $form->saving(function ($form) {
-
             $paymentCode = dump($form->vendor_id);
-            
+
             switch ($paymentCode) {
-                case (1):
+                case 1:
                     try {
                         $recordId = dump($form->record_id);
                         $amount = dump($form->amount);
 
                         $userObj = DB::table('record')->select('users_id')->where('id', $recordId)->get();
-                        foreach ($userObj as $obj) 
-                        {
+                        foreach ($userObj as $obj) {
                             $userId = $obj->users_id;
                         }
 
@@ -197,10 +196,9 @@ class TransactionController extends Controller
                     }
                     break;
                 default:
-                    throw new Exception ("Payment method is not available at this time.");
+                    throw new Exception('Payment method is not available at this time.');
                     break;
             }
-
         });
 
         return $form;
@@ -212,14 +210,13 @@ class TransactionController extends Controller
         $balance = $user->balance;
 
         if ($balance < $amount) {
-            throw new Exception ("ERROR: Account Balance is less than charged amount.");
+            throw new Exception('ERROR: Account Balance is less than charged amount.');
         }
-        
+
         $newBalance = $balance - $amount;
         $updateBalance = DB::table('users')->where('id', $id)->decrement('balance', $amount);
         $updateStatus = DB::table('record')->where('id', $record)->update(['status' => 1]);
 
         return $updateStatus;
     }
-
 }

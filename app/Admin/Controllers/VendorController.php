@@ -2,8 +2,8 @@
 
 namespace App\Admin\Controllers;
 
-use App\Models\Administration\Vendor;
 use App\Http\Controllers\Controller;
+use App\Models\Administration\Vendor;
 use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -23,6 +23,7 @@ class VendorController extends Controller
      * Index interface.
      *
      * @param Content $content
+     *
      * @return Content
      */
     public function index(Content $content)
@@ -36,30 +37,32 @@ class VendorController extends Controller
     /**
      * Show interface.
      *
-     * @param mixed $id
+     * @param mixed   $id
      * @param Content $content
+     *
      * @return Content
      */
     public function show($id, Content $content)
     {
         return $content
             ->header($this->title)
-            ->description('Showing Information for Vendor: '. $id)
+            ->description('Showing Information for Vendor: '.$id)
             ->body($this->detail($id));
     }
 
     /**
      * Edit interface.
      *
-     * @param mixed $id
+     * @param mixed   $id
      * @param Content $content
+     *
      * @return Content
      */
     public function edit($id, Content $content)
     {
         return $content
             ->header($this->title)
-            ->description('Editing Information for Vendor: '. $id)
+            ->description('Editing Information for Vendor: '.$id)
             ->body($this->form()->edit($id));
     }
 
@@ -67,6 +70,7 @@ class VendorController extends Controller
      * Create interface.
      *
      * @param Content $content
+     *
      * @return Content
      */
     public function create(Content $content)
@@ -107,6 +111,7 @@ class VendorController extends Controller
      * Make a show builder.
      *
      * @param mixed $id
+     *
      * @return Show
      */
     protected function detail($id)
@@ -137,18 +142,14 @@ class VendorController extends Controller
         $form->password('secret', 'API Secret')->help('Vendor API Secret')->placeholder('Vendor API Secret')->rules('max:191');
 
         $form->tools(function (Form\Tools $tools) {
-
             $tools->disableView();
-
         });
 
         $form->footer(function ($footer) {
-
             $footer->disableReset();
             $footer->disableViewCheck();
             $footer->disableEditingCheck();
             $footer->disableCreatingCheck();
-
         });
 
         return $form;

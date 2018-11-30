@@ -2,11 +2,11 @@
 
 namespace App\Admin\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Models\Administration\Kiosk;
 use App\Models\Administration\Record;
 use App\Models\Administration\Umbrella;
 use App\Models\User;
-use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -27,6 +27,7 @@ class RecordController extends Controller
      * Index interface.
      *
      * @param Content $content
+     *
      * @return Content
      */
     public function index(Content $content)
@@ -40,30 +41,32 @@ class RecordController extends Controller
     /**
      * Show interface.
      *
-     * @param mixed $id
+     * @param mixed   $id
      * @param Content $content
+     *
      * @return Content
      */
     public function show($id, Content $content)
     {
         return $content
             ->header($this->title)
-            ->description('Showing Record Details: '. $id)
+            ->description('Showing Record Details: '.$id)
             ->body($this->detail($id));
     }
 
     /**
      * Edit interface.
      *
-     * @param mixed $id
+     * @param mixed   $id
      * @param Content $content
+     *
      * @return Content
      */
     public function edit($id, Content $content)
     {
         return $content
             ->header($this->title)
-            ->description('Editing Record Info: '. $id)
+            ->description('Editing Record Info: '.$id)
             ->body($this->form()->edit($id));
     }
 
@@ -71,6 +74,7 @@ class RecordController extends Controller
      * Create interface.
      *
      * @param Content $content
+     *
      * @return Content
      */
     public function create(Content $content)
@@ -97,22 +101,22 @@ class RecordController extends Controller
         $grid->users()->name('Username')->sortable();
         $grid->kiosk()->name('Kiosk Name')->sortable();
         $grid->umbrella()->serial_number('Umbrella SN')->sortable();
-        
+
         $grid->start_time('Start time');
         $grid->end_time('End time');
-        
+
         $grid->status('Status')->display(function () {
             switch ($this->status) {
-                case (0):
+                case 0:
                     return "<span class='label label-info'>Pending</span>";
                 break;
-                case (1):
+                case 1:
                     return "<span class='label label-success'>Completed</span>";
                 break;
-                case (2):
+                case 2:
                     return "<span class='label label-warning'>Voided</span>";
                 break;
-                case (3):
+                case 3:
                     return "<span class='label label-danger'>Overdue</span>";
                 break;
                 default:
@@ -129,15 +133,14 @@ class RecordController extends Controller
         });
 
         $grid->filter(function (Grid\Filter $filter) {
-
             $filter->disableIdFilter();
 
-            $filter->column(1/2, function ($filter) {
+            $filter->column(1 / 2, function ($filter) {
                 $filter->equal('users_id', 'Username')->select()->ajax('/administration/api/get-user');
                 $filter->equal('kiosk_id', 'Kiosk Name')->select()->ajax('/administration/api/get-kiosks');
             });
-            
-            $filter->column(1/2, function ($filter) {
+
+            $filter->column(1 / 2, function ($filter) {
                 $filter->between('created_at')->datetime();
                 $filter->between('updated_at')->datetime();
             });
@@ -147,7 +150,6 @@ class RecordController extends Controller
             $filter->scope('status', 'Voided')->where('status', '2');
             $filter->scope('status', 'Overdue')->where('status', '3');
             $filter->scope('status', 'Unknown')->where('status', '>', '3');
-            
         });
 
         return $grid;
@@ -157,6 +159,7 @@ class RecordController extends Controller
      * Make a show builder.
      *
      * @param mixed $id
+     *
      * @return Show
      */
     protected function detail($id)
@@ -173,20 +176,20 @@ class RecordController extends Controller
         $show->end_time('End time');
         $show->status('Status')->as(function ($status) {
             switch ($this->status) {
-                case (0):
-                    return "Pending";
+                case 0:
+                    return 'Pending';
                 break;
-                case (1):
-                    return "Completed";
+                case 1:
+                    return 'Completed';
                 break;
-                case (2):
-                    return "Voided";
+                case 2:
+                    return 'Voided';
                 break;
-                case (3):
-                    return "Overdue";
+                case 3:
+                    return 'Overdue';
                 break;
                 default:
-                    return "Unknown";
+                    return 'Unknown';
                 break;
             }
         });
@@ -248,7 +251,7 @@ class RecordController extends Controller
 
         $form->datetime('start_time', 'Start time')->default(date('Y-m-d H:i:s'))->rules('required');
         $form->datetime('end_time', 'End time')->default(date('Y-m-d H:i:s'));
-        
+
         $form->select('status', 'Status')->options([
             0 => 'Pending',
             1 => 'Completed',
@@ -257,14 +260,13 @@ class RecordController extends Controller
         ]);
 
         $form->saving(function ($form) {
-
             $umbrella = dump($form->umbrella_id);
             $returnKS = dump($form->return_kiosk);
             $startTime = dump($form->start_time);
             $endTime = dump($form->end_time);
 
             $isReturned = !empty($endTime) && !empty($returnKS);
-            
+
             if (!$isReturned) {
                 try {
                     return $this->lockUmbrella($umbrella);
@@ -281,35 +283,33 @@ class RecordController extends Controller
         });
 
         $form->footer(function ($footer) {
-
             $footer->disableReset();
             $footer->disableViewCheck();
             $footer->disableEditingCheck();
             $footer->disableCreatingCheck();
-
         });
 
         return $form;
     }
 
-    protected static function lockUmbrella($id) 
+    protected static function lockUmbrella($id)
     {
         $umbrella = Umbrella::findOrFail($id);
         $status = $umbrella->status;
 
         switch ($status) {
-            case (0):
+            case 0:
                 return DB::table('umbrella')->where('id', $id)->update(['status' => 1]);
                 break;
-            case (1):
+            case 1:
                 throw new Exception('Umbrella already rented, please try again.');
                 break;
             default:
                 throw new Exception('Umbrella is not available at this time.');
                 break;
         }
-        
-        return "";
+
+        return '';
     }
 
     protected static function unlockUmbrella($id, $return)
@@ -324,5 +324,4 @@ class RecordController extends Controller
 
         return $unlock;
     }
-
 }

@@ -2,8 +2,6 @@
 
 namespace App\Models\Administration;
 
-use App\Models\Administration\Record;
-use App\Models\Administration\Umbrella;
 use Illuminate\Database\Eloquent\Model;
 
 class Kiosk extends Model
@@ -11,13 +9,13 @@ class Kiosk extends Model
     protected $table = 'kiosk';
 
     protected $guarded = [
-    	'id',
+        'id',
     ];
 
     protected $fillable = [
-    	'name',
-    	'location',
-    	'status',
+        'name',
+        'location',
+        'status',
         'lat',
         'lng',
         'url',
@@ -41,15 +39,16 @@ class Kiosk extends Model
 
     /**
      * @param Request $request
+     *
      * @return mixed
      */
     public function getAvailableUmbrella(Request $request)
     {
-        $kioskID = Kiosk::find($id);
+        $kioskID = self::find($id);
+
         return Umbrella::where([
             ['kiosk_id', '=', $kioskID],
-            ['status', '=', 0]
+            ['status', '=', 0],
         ])->count('id');
     }
-
 }

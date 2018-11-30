@@ -2,8 +2,6 @@
 
 namespace App\Models\Administration;
 
-use App\Models\Administration\Kiosk;
-use App\Models\Administration\Record;
 use Illuminate\Database\Eloquent\Model;
 
 class Umbrella extends Model
@@ -11,7 +9,7 @@ class Umbrella extends Model
     protected $table = 'umbrella';
 
     protected $guarded = [
-    	'id',
+        'id',
     ];
 
     protected $fillable = [
@@ -40,5 +38,4 @@ class Umbrella extends Model
     {
         return $this->where('status', '=', '0');
     }
-
 }

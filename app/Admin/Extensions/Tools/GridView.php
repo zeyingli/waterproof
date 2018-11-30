@@ -30,7 +30,7 @@ EOT;
         Admin::script($this->script());
 
         $options = [
-            'card' => 'image',
+            'card'  => 'image',
             'table' => 'list',
         ];
 

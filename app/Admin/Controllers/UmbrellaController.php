@@ -2,9 +2,9 @@
 
 namespace App\Admin\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Models\Administration\Kiosk;
 use App\Models\Administration\Umbrella;
-use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -25,6 +25,7 @@ class UmbrellaController extends Controller
      * Index interface.
      *
      * @param Content $content
+     *
      * @return Content
      */
     public function index(Content $content)
@@ -38,30 +39,32 @@ class UmbrellaController extends Controller
     /**
      * Show interface.
      *
-     * @param mixed $id
+     * @param mixed   $id
      * @param Content $content
+     *
      * @return Content
      */
     public function show($id, Content $content)
     {
         return $content
             ->header($this->title)
-            ->description('Showing Umbrella Details: '. $id)
+            ->description('Showing Umbrella Details: '.$id)
             ->body($this->detail($id));
     }
 
     /**
      * Edit interface.
      *
-     * @param mixed $id
+     * @param mixed   $id
      * @param Content $content
+     *
      * @return Content
      */
     public function edit($id, Content $content)
     {
         return $content
             ->header($this->title)
-            ->description('Editing Umbrella Info: '. $id)
+            ->description('Editing Umbrella Info: '.$id)
             ->body($this->form()->edit($id));
     }
 
@@ -69,6 +72,7 @@ class UmbrellaController extends Controller
      * Create interface.
      *
      * @param Content $content
+     *
      * @return Content
      */
     public function create(Content $content)
@@ -98,13 +102,13 @@ class UmbrellaController extends Controller
 
         $grid->status()->display(function () {
             switch ($this->status) {
-            case (0):
+            case 0:
                 return "<span class='label label-success'>Available</span>";
                 break;
-            case (1):
+            case 1:
                 return "<span class='label label-info'>Rented</span>";
                 break;
-            case (2):
+            case 2:
                 return "<span class='label label-danger'>Lost</span>";
                 break;
             default:
@@ -119,7 +123,7 @@ class UmbrellaController extends Controller
             $actions->disableView();
             $actions->disableEdit();
         });
-        
+
         $grid->created_at('Created at');
 
         return $grid;
@@ -129,6 +133,7 @@ class UmbrellaController extends Controller
      * Make a show builder.
      *
      * @param mixed $id
+     *
      * @return Show
      */
     protected function detail($id)
@@ -171,18 +176,14 @@ class UmbrellaController extends Controller
         $form->select('status', 'Status')->options($states)->rules('required');
 
         $form->tools(function (Form\Tools $tools) {
-
             $tools->disableView();
-
         });
-        
-        $form->footer(function ($footer) {
 
+        $form->footer(function ($footer) {
             $footer->disableReset();
             $footer->disableViewCheck();
             $footer->disableEditingCheck();
             $footer->disableCreatingCheck();
-
         });
 
         return $form;
@@ -197,5 +198,4 @@ class UmbrellaController extends Controller
             ['status', '=', 0],
         ])->count('id');
     }
-
 }

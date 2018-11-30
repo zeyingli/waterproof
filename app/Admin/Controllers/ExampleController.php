@@ -17,6 +17,7 @@ class ExampleController extends Controller
      * Index interface.
      *
      * @param Content $content
+     *
      * @return Content
      */
     public function index(Content $content)
@@ -32,6 +33,7 @@ class ExampleController extends Controller
      *
      * @param mixed   $id
      * @param Content $content
+     *
      * @return Content
      */
     public function show($id, Content $content)
@@ -47,6 +49,7 @@ class ExampleController extends Controller
      *
      * @param mixed   $id
      * @param Content $content
+     *
      * @return Content
      */
     public function edit($id, Content $content)
@@ -61,6 +64,7 @@ class ExampleController extends Controller
      * Create interface.
      *
      * @param Content $content
+     *
      * @return Content
      */
     public function create(Content $content)
@@ -78,7 +82,7 @@ class ExampleController extends Controller
      */
     protected function grid()
     {
-        $grid = new Grid(new YourModel);
+        $grid = new Grid(new YourModel());
 
         $grid->id('ID')->sortable();
         $grid->created_at('Created at');
@@ -90,7 +94,8 @@ class ExampleController extends Controller
     /**
      * Make a show builder.
      *
-     * @param mixed   $id
+     * @param mixed $id
+     *
      * @return Show
      */
     protected function detail($id)
@@ -111,7 +116,7 @@ class ExampleController extends Controller
      */
     protected function form()
     {
-        $form = new Form(new YourModel);
+        $form = new Form(new YourModel());
 
         $form->display('id', 'ID');
         $form->display('created_at', 'Created At');

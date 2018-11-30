@@ -9,7 +9,7 @@ class UrlWrapper extends AbstractDisplayer
 {
     protected function script()
     {
-        return <<<EOT
+        return <<<'EOT'
 
 $('.grid-qrcode').popover({
     title: "Scan code to visit",
@@ -27,7 +27,6 @@ $('.clipboard').tooltip({
 });
 
 EOT;
-
     }
 
     public function display()
@@ -51,6 +50,5 @@ EOT;
 </div>
 
 EOT;
-
     }
 }
