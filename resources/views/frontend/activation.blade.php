@@ -6,138 +6,136 @@ Account Activation - Step 1
 
 @section('content')
 	<div class="page-content h-100">
-        <div class="content-sticky-footer">
-            <div class="row">
-            	<div class="col-12">
-                    <div class="card rounded-0 border-0 bg-primary">
-                        <div class="card-header">
-                            <div class="row">
-                                <div class="col-7">
-                                    <h5 class="card-title text-white">Welcome, {{ Auth::user()->name }}</h5>
-                                </div>
-                                <div class="col-5 text-right">
-                                    <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="text-white">Already have account?
-                        			</a>
-    			                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-    			                    	@csrf
-    			                	</form>
-                                </div>
+        <div class="background color-light bg-primary"></div>
+        <div class="row">
+        	<div class="col-12">
+                <div class="card rounded-0 border-0 bg-primary">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-7">
+                                <h5 class="card-title text-white">Welcome, {{ Auth::user()->name }}</h5>
+                            </div>
+                            <div class="col-5 text-right">
+                                <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="text-white">Already have account?
+                    			</a>
+			                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+			                    	@csrf
+			                	</form>
                             </div>
                         </div>
-                        <div class="card-body text-white">
-                        <form action="{{ url('/account/activate') }}" method="post" class="">
-                        	@csrf
-                        	{{-- Username --}}
-                            <h3 class="f-light mb-3 text-white">Step 1</h3>
-                            <div class="row">
-                                <div class="col-12 w-100">
-                                    <label>Pick an Unique Username</label>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <input type="text" id="username" name="username" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }} text-white" required>
-                                    </div>
-
-                                    @if ($errors->has('username'))
-                                        <div class="invalid-feedback text-white">
-                                            <strong>{{ $errors->first('username') }}</strong>
-                                        </div>
-                                    @endif
-                                </div>
+                    </div>
+                    <div class="card-body text-white">
+                    <form action="{{ url('/account/activate') }}" method="post" class="">
+                    	@csrf
+                    	{{-- Username --}}
+                        <h3 class="f-light mb-3 text-white">Step 1</h3>
+                        <div class="row">
+                            <div class="col-12 w-100">
+                                <label>Pick an Unique Username</label>
                             </div>
-                        	{{-- Phone Number --}}
-                            <h3 class="f-light mb-3 text-white">Step 2</h3>
-                            <div class="row">
-                                <div class="col-12 w-100">
-                                    <label>What's your Phone Number?</label>
-                                </div>
-                                <div class="col-3">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control text-white" value="+1">
-                                    </div>
-                                </div>
-                                <div class="col-9">
-                                    <div class="form-group">
-                                        <input type="text" id="phone" name="phone" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }} text-white" required>
-                                    </div>
-
-                                    @if ($errors->has('phone'))
-                                        <div class="invalid-feedback text-white">
-                                            <strong>{{ $errors->first('phone') }}</strong>
-                                        </div>
-                                    @endif
-                                </div>
-                            </div>
-                            {{-- Payment Method --}}
-                            <h3 class="f-light mb-3 text-white">Step 3</h3>
-                            <div class="row">
-                                <div class="col-12 w-100">
-                                    <label>Choose your preferred payment</label>
-                                </div>
-                                
-                                {{-- Account Balance --}}
-                                <div class="col-6">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="payment-1" name="payment-1" value="1" checked>
-                                        <label class="custom-control-label" for="payment-1">
-                                            <i class="material-icons icon">account_balance</i>
-                                            <p class="text-white">Account Balance <br>(Built-in)</p>
-                                        </label>
-                                    </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <input type="text" id="username" name="username" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }} text-white" required>
                                 </div>
 
-                                {{-- Credit Card --}}
-                                <div class="col-6">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="payment-2" name="payment-2" value="2">
-                                        <label class="custom-control-label" for="payment-2">
-                                            <i class="material-icons icon">credit_card</i>
-                                            <p class="text-white">Credit Card <br>(Future Plan)</p>
-                                        </label>
+                                @if ($errors->has('username'))
+                                    <div class="invalid-feedback text-white">
+                                        <strong>{{ $errors->first('username') }}</strong>
                                     </div>
-                                </div>
-
+                                @endif
                             </div>
-                            <hr style="height:2px;border:0;background-color:transparent;">
-                            {{-- Skip Email Verification (Demo) --}}
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="skipVerification" name="skipVerification" value="1">
-                                        <label class="custom-control-label" for="skipVerification">
-                                            Skip Email Verification (Demo Only)
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="terms" name="terms" value="1" required>
-                                        <label class="custom-control-label" for="terms">
-                                            I hereby acknowledge and agree to the <a href="javascript:void(0)" data-toggle="modal" data-target="#termsModal" class="text-white"><strong>Terms of Use and Conditions<strong></a>.
-                                        </label>
-                                    </div>
-
-                                    @if ($errors->has('terms'))
-                                        <div class="invalid-feedback text-white">
-                                            <strong>{{ $errors->first('terms') }}</strong>
-                                        </div>
-                                    @endif
-                                </div>      
-                            </div>
-                            <br>
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-block mb-1 btn-light text-primary px-4">
-                                    Get <strong>$10</strong> for Completing Activation
-                                </button>
-                            </div>
-                        </form>
                         </div>
+                    	{{-- Phone Number --}}
+                        <h3 class="f-light mb-3 text-white">Step 2</h3>
+                        <div class="row">
+                            <div class="col-12 w-100">
+                                <label>What's your Phone Number?</label>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <input type="text" class="form-control text-white" value="+1">
+                                </div>
+                            </div>
+                            <div class="col-9">
+                                <div class="form-group">
+                                    <input type="text" id="phone" name="phone" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }} text-white" required>
+                                </div>
+
+                                @if ($errors->has('phone'))
+                                    <div class="invalid-feedback text-white">
+                                        <strong>{{ $errors->first('phone') }}</strong>
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                        {{-- Payment Method --}}
+                        <h3 class="f-light mb-3 text-white">Step 3</h3>
+                        <div class="row">
+                            <div class="col-12 w-100">
+                                <label>Choose your preferred payment</label>
+                            </div>
+                            
+                            {{-- Account Balance --}}
+                            <div class="col-6">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="payment-1" name="payment-1" value="1" checked>
+                                    <label class="custom-control-label" for="payment-1">
+                                        <i class="material-icons icon">account_balance</i>
+                                        <p class="text-white">Account Balance <br>(Built-in)</p>
+                                    </label>
+                                </div>
+                            </div>
+
+                            {{-- Credit Card --}}
+                            <div class="col-6">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="payment-2" name="payment-2" value="2">
+                                    <label class="custom-control-label" for="payment-2">
+                                        <i class="material-icons icon">credit_card</i>
+                                        <p class="text-white">Credit Card <br>(Future Plan)</p>
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+                        <hr style="height:2px;border:0;background-color:transparent;">
+                        {{-- Skip Email Verification (Demo) --}}
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="skipVerification" name="skipVerification" value="1">
+                                    <label class="custom-control-label" for="skipVerification">
+                                        Skip Email Verification (Demo Only)
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="terms" name="terms" value="1" required>
+                                    <label class="custom-control-label" for="terms">
+                                        I hereby acknowledge and agree to the <a href="javascript:void(0)" data-toggle="modal" data-target="#termsModal" class="text-white"><strong>Terms of Use and Conditions<strong></a>.
+                                    </label>
+                                </div>
+
+                                @if ($errors->has('terms'))
+                                    <div class="invalid-feedback text-white">
+                                        <strong>{{ $errors->first('terms') }}</strong>
+                                    </div>
+                                @endif
+                            </div>      
+                        </div>
+                        <br>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-block mb-1 btn-light text-primary px-4">
+                                Get <strong>$10</strong> for Completing Activation
+                            </button>
+                        </div>
+                    </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 @endsection
 
 @section('footer_scripts')
