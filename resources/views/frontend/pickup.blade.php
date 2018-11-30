@@ -38,7 +38,7 @@ Picking up Umbrella at {{ $kiosk->name }} Kiosk
             @if($umbrella === 0)
             	<a href="javascript:void(0)" class="btn btn-block btn-secondary border-0 z-3">Unavailable to Pickup at this Moment</a>
             @elseif(!$overdueCheck)
-            	<a href="{{ url('/account/recharge') }}" class="btn btn-block btn-danger border-0 z-3">Overdued order found</a>
+            	<a href="{{ url('/account/recharge') }}" class="btn btn-block btn-danger border-0 z-3">Overdue order found</a>
             @else
             <form action="{{ url('/pickup') }}/{{ $kiosk->id }}" method="post">
             	@csrf

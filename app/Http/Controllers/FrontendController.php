@@ -297,7 +297,7 @@ class FrontendController extends Controller
 
         $runTransaction = $this->doTransaction($record, $amount);
 
-        return redirect('/account')->with('success', 'Overdued order has been succesfully paid off.');
+        return redirect('/account')->with('success', 'Overdue order has been succesfully paid off.');
     }
 
     // Rental Availability Check

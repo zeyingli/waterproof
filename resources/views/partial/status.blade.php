@@ -25,7 +25,7 @@
 @endif
 @if(!$overdueCheck)
     <div class="alert alert-danger" role="alert">
-        <i class="material-icons icon">report_problem</i> Your account has been locked due to an overdued order has not been paid off.
+        <i class="material-icons icon">report_problem</i> Your account has been locked due to an overdue order has not been paid off.
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">×</span>
         </button>

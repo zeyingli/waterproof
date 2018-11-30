@@ -49,6 +49,6 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
     Route::get('/account/recharge', 'FrontendController@recharge')->name('Recharge Account');
     Route::post('/account/recharge', 'FrontendController@addbalance')->name('Add Balance');
     Route::get('/account/history', 'FrontendController@history')->name('Payment History');
-    Route::post('/account/pay/{id}', 'FrontendController@payOverduedOrder')->name('Pay Overdued Order');
+    Route::post('/account/pay/{id}', 'FrontendController@payOverduedOrder')->name('Pay Overdue Order');
 });
 

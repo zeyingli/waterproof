@@ -13,7 +13,7 @@ Enjoy your Trip!
                 	<div class="col-sm-12 col-md-6">
                 		<div class="card mb-3">
                             <div class="card-header bg-primary">
-                                <h4 class="text-center f-light text-white my-3">Be Safe!</h4>
+                                <h4 class="text-center f-light text-white my-3">Be Safe and Stay Dry!</h4>
                             </div>
                             <div class="card-body text-center">
                                 <div class="mt-1">

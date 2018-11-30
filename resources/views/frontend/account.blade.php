@@ -5,7 +5,6 @@ My Account
 @endsection
 
 @section('content')
-
 	<div class="page-content circle-background">
         <div class="content-sticky-footer">
             <div class="row mx-0 position-relative">

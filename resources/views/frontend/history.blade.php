@@ -25,7 +25,7 @@ Payment History
                                         @elseif($record->status === 2)
                                             <span class="badge badge-warning">Voided</span>
                                         @elseif($record->status === 3)
-                                            <span class="badge badge-danger">Overdued</span>
+                                            <span class="badge badge-danger">Overdue</span>
                                         @else
                                             <span class="badge badge-default">Unknown</span>
 	                                	@endif
