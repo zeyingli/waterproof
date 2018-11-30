@@ -87,7 +87,7 @@ User Dashboard
                                             }
                                         @endphp
                                         <span class="badge badge-{{ $type }} ml-1">
-                                            {{ $info }} - {{ $amount }} left
+                                            {{ $amount }} left
                                         </span>
                                     </h5>
                                     <p>{{ $kiosk->location }}</p>
