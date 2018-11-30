@@ -23,6 +23,7 @@ class Icon extends Field
 $('#{$this->id}').iconpicker();
 
 EOT;
+
         return parent::render();
     }
 }

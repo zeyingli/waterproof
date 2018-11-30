@@ -45,7 +45,7 @@ EOT;
 
     protected function script()
     {
-        return <<<EOT
+        return <<<'EOT'
 
 $('.grid-open-map').on('click', function() {
 

@@ -23,7 +23,6 @@ class HomeController extends Controller
             ->header('System Summary')
             ->description('Environment | Extensions | Dependencies')
             ->row(function (Row $row) {
-
                 $row->column(4, function (Column $column) {
                     $column->append(Dashboard::environment());
                 });

@@ -2,7 +2,6 @@
 
 namespace App\Models\Administration;
 
-use App\Models\Administration\Transaction;
 use Illuminate\Database\Eloquent\Model;
 
 class Vendor extends Model
@@ -10,13 +9,13 @@ class Vendor extends Model
     protected $table = 'vendor';
 
     protected $guarded = [
-    	'id',
+        'id',
     ];
 
     protected $fillable = [
-    	'name',
-    	'key',
-    	'secret',
+        'name',
+        'key',
+        'secret',
     ];
 
     /**
@@ -28,5 +27,4 @@ class Vendor extends Model
     {
         return $this->hasMany(Transaction::class);
     }
-
 }

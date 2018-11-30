@@ -312,13 +312,13 @@ return [
     |
     */
     'extensions' => [
-    	'material-ui' => [
+        'material-ui' => [
             // If the value is set to false, this extension will be disabled
-            'enable' => true
+            'enable' => true,
         ],
         'env-manager' => [
             // If the value is set to false, this extension will be disabled
-            'enable' => true
+            'enable' => true,
         ],
         'chartjs' => [
             // Set to `false` if you want to disable this extension
@@ -329,12 +329,12 @@ return [
             'enable' => true,
             // configuration
             'config' => [
-                'min' => 1, 'max' => 5, 'step' => 1, 'size' => 'xs'
-            ]
+                'min' => 1, 'max' => 5, 'step' => 1, 'size' => 'xs',
+            ],
         ],
         'media-manager' => [
             // Select a local disk that you configured in `config/filesystem.php`
-            'disk' => 'public'
+            'disk' => 'public',
         ],
         'phpinfo' => [
             // Set this to false if you want to disable this extension
@@ -353,6 +353,6 @@ return [
             'user_retriever' => function ($id) {
                 return \App\Models\User::find($id);
             },
-        ]
+        ],
     ],
 ];

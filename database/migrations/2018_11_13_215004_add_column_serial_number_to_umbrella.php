@@ -1,8 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\Schema;
 
 class AddColumnSerialNumberToUmbrella extends Migration
 {
@@ -13,7 +12,7 @@ class AddColumnSerialNumberToUmbrella extends Migration
      */
     public function up()
     {
-        Schema::table('umbrella', function($table) {
+        Schema::table('umbrella', function ($table) {
             $table->string('serial_number')->unique()->after('kiosk_id');
         });
     }
@@ -25,7 +24,7 @@ class AddColumnSerialNumberToUmbrella extends Migration
      */
     public function down()
     {
-        Schema::table('umbrella', function($table) {
+        Schema::table('umbrella', function ($table) {
             $table->dropColumn('serial_number');
         });
     }

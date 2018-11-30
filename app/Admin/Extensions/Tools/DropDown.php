@@ -8,7 +8,7 @@ class DropDown extends AbstractTool
 {
     public function render()
     {
-        return <<<EOT
+        return <<<'EOT'
 
 <div class="btn-group">
     <button type="button" class="btn btn-sm btn-default">操作</button>
@@ -26,6 +26,5 @@ class DropDown extends AbstractTool
 </div>
 
 EOT;
-
     }
 }

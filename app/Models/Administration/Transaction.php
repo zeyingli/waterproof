@@ -2,8 +2,6 @@
 
 namespace App\Models\Administration;
 
-use App\Models\Administration\Vendor;
-use App\Models\Administration\Record;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,13 +10,13 @@ class Transaction extends Model
     protected $table = 'transaction';
 
     protected $guarded = [
-    	'id',
+        'id',
     ];
 
     protected $fillable = [
-    	'vendor_id',
+        'vendor_id',
         'record_id',
-    	'amount',
+        'amount',
     ];
 
     /**
@@ -30,7 +28,7 @@ class Transaction extends Model
     {
         return $this->hasOne(User::class);
     }
-    
+
     public function vendor()
     {
         return $this->belongsTo(Vendor::class);
@@ -40,5 +38,4 @@ class Transaction extends Model
     {
         return $this->belongsTo(Record::class);
     }
-
 }

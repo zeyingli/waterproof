@@ -9,17 +9,16 @@ Route::group([
     'namespace'     => config('admin.route.namespace'),
     'middleware'    => config('admin.route.middleware'),
 ], function (Router $router) {
-
     $router->get('/', 'HomeController@index');
     $router->get('/summary', 'HomeController@summary');
 
     // Operations Class
     $router->resources([
-    	'/operations/kiosk' 		=> KioskController::class,
-    	'/operations/umbrella' 		=> UmbrellaController::class, 
-    	'/operations/record' 		=> RecordController::class,
-    	'/operations/transaction' 	=> TransactionController::class,
-    	'/operations/vendor' 		=> VendorController::class,
+        '/operations/kiosk' 		      => KioskController::class,
+        '/operations/umbrella' 		   => UmbrellaController::class,
+        '/operations/record' 		     => RecordController::class,
+        '/operations/transaction' 	 => TransactionController::class,
+        '/operations/vendor' 		     => VendorController::class,
         '/operations/client'        => UserController::class,
     ]);
 
@@ -36,5 +35,4 @@ Route::group([
 
     // Custom Route
     $router->post('/operations/kiosk/status', 'KioskController@status');
-
 });

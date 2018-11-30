@@ -3,9 +3,6 @@
 namespace App\Models\Administration;
 
 use App\Models\User;
-use App\Models\Administration\Kiosk;
-use App\Models\Administration\Transaction;
-use App\Models\Administration\Umbrella;
 use Illuminate\Database\Eloquent\Model;
 
 class Record extends Model
@@ -13,7 +10,7 @@ class Record extends Model
     protected $table = 'record';
 
     protected $guarded = [
-    	'id',
+        'id',
     ];
 
     protected $dates = [
@@ -22,17 +19,17 @@ class Record extends Model
     ];
 
     protected $fillable = [
-    	'users_id',
-    	'kiosk_id',
+        'users_id',
+        'kiosk_id',
         'return_kiosk',
-        'umbrella_id',        
+        'umbrella_id',
         'start_time',
         'end_time',
         'status',
     ];
 
     /**
-     * Relationships
+     * Relationships.
      *
      * @return mixed
      */
@@ -55,5 +52,4 @@ class Record extends Model
     {
         return $this->hasMany(Transaction::class);
     }
-
 }

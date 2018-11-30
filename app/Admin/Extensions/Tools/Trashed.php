@@ -10,7 +10,7 @@ class Trashed extends AbstractTool
 {
     protected function script()
     {
-        $url  = Request::fullUrlWithQuery(['trashed' => '_trashed_']);
+        $url = Request::fullUrlWithQuery(['trashed' => '_trashed_']);
 
         return <<<EOT
 
@@ -20,7 +20,6 @@ $('.grid-status').click(function () {
 });
 
 EOT;
-
     }
 
     public function render()

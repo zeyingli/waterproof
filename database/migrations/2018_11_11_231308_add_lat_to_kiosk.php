@@ -1,8 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\Schema;
 
 class AddLatToKiosk extends Migration
 {
@@ -13,7 +12,7 @@ class AddLatToKiosk extends Migration
      */
     public function up()
     {
-        Schema::table('kiosk', function($table) {
+        Schema::table('kiosk', function ($table) {
             $table->string('lat')->nullable()->after('location');
             $table->string('lng')->nullable()->after('location');
         });

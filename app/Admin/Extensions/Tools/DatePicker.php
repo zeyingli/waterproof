@@ -23,7 +23,6 @@ $('#grid-date-picker').datetimepicker({format:'YYYY-MM-DD'}).on("dp.change", fun
 });
 
 EOT;
-
     }
 
     public function render()

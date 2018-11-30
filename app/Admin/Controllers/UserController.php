@@ -2,8 +2,8 @@
 
 namespace App\Admin\Controllers;
 
-use App\Models\User;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -20,6 +20,7 @@ class UserController extends Controller
      * Index interface.
      *
      * @param Content $content
+     *
      * @return Content
      */
     public function index(Content $content)
@@ -33,30 +34,32 @@ class UserController extends Controller
     /**
      * Show interface.
      *
-     * @param mixed $id
+     * @param mixed   $id
      * @param Content $content
+     *
      * @return Content
      */
     public function show($id, Content $content)
     {
         return $content
             ->header($this->title)
-            ->description('Showing Client Details: '. $id)
+            ->description('Showing Client Details: '.$id)
             ->body($this->detail($id));
     }
 
     /**
      * Edit interface.
      *
-     * @param mixed $id
+     * @param mixed   $id
      * @param Content $content
+     *
      * @return Content
      */
     public function edit($id, Content $content)
     {
         return $content
             ->header($this->title)
-            ->description('Editing Client Info: '. $id)
+            ->description('Editing Client Info: '.$id)
             ->body($this->form()->edit($id));
     }
 
@@ -64,6 +67,7 @@ class UserController extends Controller
      * Create interface.
      *
      * @param Content $content
+     *
      * @return Content
      */
     public function create(Content $content)
@@ -95,18 +99,17 @@ class UserController extends Controller
         $grid->balance('Balance');
 
         $grid->email_verified_at('Status')->display(function ($email_verified_at) {
-            if(!empty($email_verified_at)) {
+            if (!empty($email_verified_at)) {
                 return "<span class='label label-success'>Verified</span>";
             } else {
                 return "<span class='label label-danger'>Unverified</span>";
             }
-
         });
 
         $grid->actions(function ($actions) {
             $actions->disableView();
         });
-    
+
         return $grid;
     }
 
@@ -114,6 +117,7 @@ class UserController extends Controller
      * Make a show builder.
      *
      * @param mixed $id
+     *
      * @return Show
      */
     protected function detail($id)
@@ -157,12 +161,10 @@ class UserController extends Controller
         });
 
         $form->footer(function ($footer) {
-
             $footer->disableReset();
             $footer->disableViewCheck();
             $footer->disableEditingCheck();
             $footer->disableCreatingCheck();
-
         });
 
         return $form;
