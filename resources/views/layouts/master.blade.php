@@ -91,7 +91,7 @@
                                 <i class="icon material-icons md-18">verified_user</i>
                             @endif
                         </h5>
-                        <p>Member since {{ Auth::user()->created_at->format('Y.m.d') }}</p>
+                        <p>Member since {{ Auth::user()->created_at->timezone('America/New_York')->format('Y.m.d') }}</p>
                     </div>
                 </a>
             </div>

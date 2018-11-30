@@ -16,6 +16,11 @@ class Record extends Model
     	'id',
     ];
 
+    protected $dates = [
+        'start_time',
+        'end_time',
+    ];
+
     protected $fillable = [
     	'users_id',
     	'kiosk_id',

@@ -39,7 +39,7 @@ Payment History
                                         $transactions = App\Models\Administration\Transaction::where('record_id', $record->id)->get();
                                     @endphp
                                     @foreach($transactions as $transaction)
-                                        Transaction ID:  {!! str_limit(sha1($transaction->created_at), 20, '') !!}-{!! $transaction->id !!}
+                                        Transaction ID:  {!! str_limit(sha1($transaction->created_at), 15, '') !!}-{!! $transaction->id !!}
                                         <br>
                                         @php
                                             $vendors = App\Models\Administration\Vendor::where('id', $transaction->vendor_id)->select('name')->get();
@@ -52,8 +52,8 @@ Payment History
                                         <br>
                                         @endforeach
                                     <br>
-                                    Trip Started:   {{ $record->start_time }} <br>
-                                    Trip Ended: 	{!! $record->end_time !!} <br>
+                                    Trip Started:   {{ $record->start_time->timezone('America/New_York') }} <br>
+                                    Trip Ended: 	{!! $record->end_time->timezone('America/New_York') !!} <br>
                                     <br>
                                     @if($record->status === 3)
                                         <div class="row mx-0 mt-1">
