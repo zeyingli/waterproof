@@ -158,6 +158,17 @@ class FrontendController extends Controller
         return view('frontend.history')->with($data);
     }
 
+    public function rewards()
+    {
+        return redirect('/account')->with('notice', 'Rewards program is rolling out, rent more and get more! Thanks for choosing Waterproof!');
+    }
+
+    // Help Center
+    public function help()
+    {
+        return view('frontend.help');
+    }
+
     // Terms of Use and Conditions
     public function terms()
     {
