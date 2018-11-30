@@ -147,6 +147,30 @@
                     @csrf
                 </form>
             </div>
+
+            {{-- Copyright Information --}}
+            <div class="sticky-bottom">
+                <div class="row mt-5">
+                    <div class="col-12">
+                        <p class="ml-3 text-white">
+                            Release Version: {{ config('app.version') }}
+                            <span class="badge badge-light ml-1">Demo Only</span>
+                        </p>
+                    </div>
+                    <div class="col-12">
+                        <p class="ml-3 text-white">
+                            &copy; Copyright {{ date('Y') }} <strong>Waterproof</strong>
+                            <br> All Rights Reserved.
+                        </p>
+                        <p class="ml-3 text-white">
+                                Capstone Semester Project
+                            <br>Instructed by: Prof.Michael Hills
+                            <br>IST 440, Section 003W, Fall 2018
+                        </p>     
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <div class="page">
