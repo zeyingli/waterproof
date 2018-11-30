@@ -158,7 +158,7 @@ Account Activation - Step 1
                     <br>    - Authorized Kiosk Stations
                     <br>    - Web/Mobile Application
                     <br>
-                    <br>For more details, please visit <a href="{{ url('/terms') }}" target="_blank">Waterproof Rental Umbrella Terms of Use and Conditions</a>.
+                    <br>For more details, please visit <a href="{{ url('/terms') }}">Waterproof Rental Umbrella Terms of Use and Conditions</a>.
                     <br>
                 </div>
                 <div class="modal-footer">
