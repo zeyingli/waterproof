@@ -27,7 +27,7 @@
                     <div class="row mx-0">
                         <div class="col">                    
                             <h3 class="text-white">Verification Required</h3><br>
-                            <p class="text-white">Before proceeding, please check your email for a verification link. After verified your email address, click the below button to login with your account.</p>
+                            <p class="text-white">Before proceeding, please check your email for a verification link. <br><br>After verified your email address, click the below button to login with your account.</p>
                         </div>
                     </div>
                     <br>
