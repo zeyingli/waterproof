@@ -13,9 +13,10 @@
 */
 
 Route::get('/', function () {
-    if(!Agent::isDesktop()) {
+    if (!Agent::isDesktop()) {
         return redirect('/login');
     }
+
     return view('landing');
 })->name('Landing Page');
 
@@ -32,7 +33,6 @@ Route::post('/account/activate', 'FrontendController@doActivation')->name('Activ
 // Misc
 Route::get('/help', 'FrontendController@help')->name('Help Center');
 Route::get('/terms', 'FrontendController@terms')->name('Terms of Use and Conditions');
-
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
 
