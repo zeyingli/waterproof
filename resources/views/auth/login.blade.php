@@ -6,7 +6,7 @@ Login to My Account
 
 @section('login')
 	<div class="page">
-        <div class="page-content h-100 ">
+        <div class="page-content h-100">
             <div class="background color-light"></div>
             <div class="row mx-0">
                 <div class="col">
