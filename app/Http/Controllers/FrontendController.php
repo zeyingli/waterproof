@@ -18,6 +18,7 @@ class FrontendController extends Controller
 {
     // Environment Variables
     private static $billBySecond = 0.001;
+    private static $maximumCharge = 20; 
     private static $defaultPaymentCode = 1;
 
     /**
@@ -342,6 +343,10 @@ class FrontendController extends Controller
         $duration = $endTime->diffInSeconds($startTime);
 
         $totalAmount = $duration * self::$billBySecond;
+
+        if ($totalAmount > self::$maximumCharge) {
+            $totalAmount = self::$maximumCharge;
+        }
 
         return $totalAmount;
     }
