@@ -89,7 +89,7 @@ Account Activation - Step 1
                             {{-- Credit Card --}}
                             <div class="col-6">
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="payment-2" name="payment-2" value="2">
+                                    <input type="checkbox" class="custom-control-input" id="payment-2" name="payment-2" value="2" onclick="event.preventDefault();">
                                     <label class="custom-control-label" for="payment-2">
                                         <i class="material-icons icon">credit_card</i>
                                         <p class="text-white">Credit Card <br>(Future Plan)</p>
