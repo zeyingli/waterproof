@@ -27,6 +27,14 @@ My Account
                     <h3 class="mt-3 mb-0">$ {{ Auth::user()->balance }}</h3>
                     <p class="mt-0 mb-3 color-gray">Account Balance</p>
                     @include('partial.status')
+                    @if(!$overdueCheck)
+                        <div class="alert alert-danger" role="alert">
+                            <i class="material-icons icon">report_problem</i> Your account has been locked due to an overdue order has not been paid off.
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                    @endif
                 </div>
             </div>
             <div class="row mx-0 mt-3">

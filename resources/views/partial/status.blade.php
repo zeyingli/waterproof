@@ -23,17 +23,17 @@
         </button>
     </div>
 @endif
-@if(!$overdueCheck)
-    <div class="alert alert-danger" role="alert">
-        <i class="material-icons icon">report_problem</i> Your account has been locked due to an overdue order has not been paid off.
+@if(session()->has('notice'))
+    <div class="alert alert-info" role="alert">
+         {{ session('notice') }}
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">×</span>
         </button>
     </div>
 @endif
-@if(session()->has('notice'))
-    <div class="alert alert-info" role="alert">
-         {{ session('notice') }}
+@if(session()->has('multisession'))
+    <div class="alert alert-danger" role="alert">
+         {{ session('multisession') }}
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">×</span>
         </button>
