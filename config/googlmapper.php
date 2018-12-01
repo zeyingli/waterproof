@@ -225,7 +225,7 @@ return [
     | Enable default Googlmapper map marker cluster.
     |
     */
-    'cluster' => false,
+    'cluster' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -265,7 +265,7 @@ return [
         | The maximum zoom level that a marker can be part of a cluster.
         |
         */
-        'zoom' => null,
+        'zoom' => 13,
 
         /*
         |--------------------------------------------------------------------------
