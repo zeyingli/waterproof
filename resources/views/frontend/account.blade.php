@@ -42,7 +42,7 @@ My Account
                     <a href="{{ url('/account/recharge') }}" class="btn btn-block gradient border-0">Add Balance</a>
                 </div>
                 <div class="col">
-                    <a href="{{ url('/account/history') }}" class="btn btn-block btn-outline-secondary">Payment History</a>
+                    <a href="{{ url('/account/history') }}" class="btn btn-block btn-outline-secondary">Order History</a>
                 </div>
             </div>
             

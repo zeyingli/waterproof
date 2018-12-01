@@ -7,7 +7,7 @@ Payment History
 @section('content')
 	<div class="page-content">
         <div class="content-sticky-footer">
-        	<h2 class="block-title text-center">Payment History</h2>
+        	<h2 class="block-title text-center">Order History</h2>
         	<div class="row mx-0">
                 <div class="col">
                     <div id="accordion">
