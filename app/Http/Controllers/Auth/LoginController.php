@@ -60,7 +60,7 @@ class LoginController extends Controller
     }
 
     /**
-     * Restricting One Session per User
+     * Restricting One Session per User.
      *
      * @param \Illuminate\Http\Request $request
      *
@@ -80,7 +80,7 @@ class LoginController extends Controller
 
         return $this->authenticated($request, $this->guard()->user())
                 ?: redirect($this->redirectAfterLogout)->with('multisession', 'Your account has been logged in from somewhere else, please change your password or contact us immediately if you have not authorized this action.');
-    }   
+    }
 
     /**
      * Logout, Clear Session, and Return.
