@@ -60,6 +60,29 @@ class LoginController extends Controller
     }
 
     /**
+     * Restricting One Session per User.
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return void
+     */
+    protected function sendLoginResponse(Request $request)
+    {
+        $request->session()->regenerate();
+        $previous_session = Auth::User()->session_id;
+        if ($previous_session) {
+            Session::getHandler()->destroy($previous_session);
+        }
+
+        Auth::user()->session_id = Session::getId();
+        Auth::user()->save();
+        $this->clearLoginAttempts($request);
+
+        return $this->authenticated($request, $this->guard()->user())
+                ?: redirect($this->redirectAfterLogout)->with('multisession', 'Your account has been logged in from somewhere else, please change your password or contact us immediately if you have not authorized this action.');
+    }
+
+    /**
      * Logout, Clear Session, and Return.
      *
      * @return void
