@@ -18,7 +18,7 @@ class FrontendController extends Controller
 {
     // Environment Variables
     private static $billBySecond = 0.001;
-    private static $maximumCharge = 20; 
+    private static $maximumCharge = 20;
     private static $defaultPaymentCode = 1;
 
     /**
