@@ -17,7 +17,7 @@ Payment History
                                 <a href="javascript:void(0)" class="" data-toggle="collapse" data-target="#collapse{{ $record->id }}" aria-expanded="false" aria-controls="collapse{{ $record->id }}">
                                 	<p class="text-white">
                                         <i class="icon material-icons">receipt</i>Order ID: 
-                                        <strong>SC{!! $record->created_at->format('Ymd') !!}-{{ $record->id }}</strong>
+                                        <strong>SC{{ $record->created_at->format('Ymd') }}-{{ $record->id }}</strong>
 	                                	@if($record->status === 0)
                                             <span class="badge badge-info">In Progress</span>
                                         @elseif($record->status === 1)
@@ -35,25 +35,28 @@ Payment History
 
                             <div id="collapse{{ $record->id }}" class="collapse" data-parent="#accordion">
                                 <div class="card-body">
-                                    @php
-                                        $transactions = App\Models\Administration\Transaction::where('record_id', $record->id)->get();
-                                    @endphp
-                                    @foreach($transactions as $transaction)
-                                        Transaction ID:  {!! str_limit(sha1($transaction->created_at), 15, '') !!}-{!! $transaction->id !!}
-                                        <br>
+                                    @if($record->status === 0)
+                                    @else
                                         @php
-                                            $vendors = App\Models\Administration\Vendor::where('id', $transaction->vendor_id)->select('name')->get();
+                                            $transactions = App\Models\Administration\Transaction::where('record_id', $record->id)->get();
                                         @endphp
-                                        @foreach($vendors as $vendor)    
-                                            Payment Method: {!! $vendor->name !!}
+                                        @foreach($transactions as $transaction)
+                                            Transaction ID:  {{ str_limit(sha1($transaction->created_at), 15, '') }}-{{ $transaction->id }}
+                                            <br>
+                                            @php
+                                                $vendors = App\Models\Administration\Vendor::where('id', $transaction->vendor_id)->select('name')->get();
+                                            @endphp
+                                            @foreach($vendors as $vendor)    
+                                                Payment Method: {{ $vendor->name == true ? $vendor->name : 'Default' }}
+                                            @endforeach
+                                            <br>
+                                            Billing Amount:  {{ $transaction->amount == true ? $transaction->amount : 'Pending'}}
+                                            <br>
                                         @endforeach
-                                        <br>
-                                        Billing Amount:  {!! $transaction->amount !!}
-                                        <br>
-                                        @endforeach
+                                    @endif
                                     <br>
-                                    Trip Started:   {{ $record->start_time->timezone('America/New_York') }} <br>
-                                    Trip Ended: 	{!! $record->end_time->timezone('America/New_York') !!} <br>
+                                    Trip Started:   {{ $record->start_time == true ? $record->start_time->timezone('America/New_York') : 'Pending' }} <br>
+                                    Trip Ended: 	{{ $record->end_time == true ? $record->end_time->timezone('America/New_York') : 'Pending' }} <br>
                                     <br>
                                     @if($record->status === 3)
                                         <div class="row mx-0 mt-1">
