@@ -11,5 +11,6 @@ return array(
     'Mockery' => array($vendorDir . '/mockery/mockery/library'),
     'Doctrine\\DBAL\\' => array($vendorDir . '/doctrine/dbal/lib'),
     'Doctrine\\Common\\Lexer\\' => array($vendorDir . '/doctrine/lexer/lib'),
+    'Detection' => array($vendorDir . '/mobiledetect/mobiledetectlib/namespaced'),
     'Cornford\\Googlmapper' => array($vendorDir . '/cornford/googlmapper/src'),
 );

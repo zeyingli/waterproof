@@ -13,6 +13,9 @@
 */
 
 Route::get('/', function () {
+    if(!Agent::isDesktop()) {
+        return redirect('/login');
+    }
     return view('landing');
 })->name('Landing Page');
 
@@ -26,8 +29,10 @@ Route::get('/logout', ['uses' => 'Auth\LoginController@logout'])->name('User Log
 Route::get('/account/activate', 'FrontendController@activate')->name('Account Activation');
 Route::post('/account/activate', 'FrontendController@doActivation')->name('Activating Account');
 
-// Legal Information
+// Misc
+Route::get('/help', 'FrontendController@help')->name('Help Center');
 Route::get('/terms', 'FrontendController@terms')->name('Terms of Use and Conditions');
+
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
 
@@ -35,7 +40,6 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/dashboard', 'FrontendController@dashboard')->name('User Dashboard');
     Route::get('/account', 'FrontendController@account')->name('My Account');
     Route::get('/rewards', 'FrontendController@rewards')->name('Rewards Program');
-    Route::get('/help', 'FrontendController@help')->name('Help Center');
 
     // Dashboard Multi-tabs
     Route::get('/pickup/{id}', 'FrontendController@pickup')->name('Pickup Umbrella');
